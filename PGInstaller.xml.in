@@ -1976,6 +1976,7 @@ ${msg(existing.upgraded)} </explanation>
     <windowsSigningPkcs12File>${build_project_directory}/codesign/signing/windows-signing.pfx</windowsSigningPkcs12File>
     <windowsSigningPkcs12Password>${env(WINDOWS_SIGNING_PASSWORD)}</windowsSigningPkcs12Password>
     <windowsSigningTimestampServer>http://timestamp.verisign.com/scripts/timstamp.dll</windowsSigningTimestampServer>
+    <windowsSigningTimestampFormat>authenticode</windowsSigningTimestampFormat>
     <overwritePolicy>onlyIfNewer</overwritePolicy>
     <requireInstallationByRootUser>1</requireInstallationByRootUser>
     <saveRelativePaths>1</saveRelativePaths>
