@@ -1,19 +1,20 @@
-Welcome to PostgreSQL Installer by 2ndQuadrant
-==============================================
+Welcome to Postgres Installer by 2ndQuadrant
+============================================
 
-PostgreSQL Installer by 2ndquadrant is a GUI based, user-friendly installer for PostgreSQL that is digitally signed and certified by 2ndQuadrant. The installer is currently available for PostgreSQL versions 9.5, 9.6, 10 and 11(beta) and has the ability to run in graphical, command line, or quiet installation modes for  Windows, OSX and Linux.
+Postgres Installer by 2ndquadrant is a GUI based, user-friendly installer for PostgreSQL that is digitally signed and certified by 2ndQuadrant. The installer is currently available for PostgreSQL versions 9.5, 9.6, 10 and 11(beta) and has the ability to run in graphical, command line, or quiet installation modes for  Windows, OSX and Linux.
 
 
 Features
 ========
 
-PostgreSQL Installer comes with features listed below. In addition to these, many are in pipeline and will be available in upcoming releases.
+Postgres Installer comes with features listed below. In addition to these, many are in pipeline and will be available in upcoming releases.
 
+. OmniDB support
 . PostGIS support
 . OpenSSL support
-. Zlib support
 . Python3 support
-. OmniDB support
+. Zlib support
+. LDAP support
 
 For more details please visit.
 https://www.2ndquadrant.com/en/resources/PostgreSQL-installer-2ndquadrant/
@@ -31,7 +32,7 @@ NOTE: Open windows command prompt as administrator.
 . Status: sc query "__SRVC_NAME__" | findstr /i "STATE"
 --Above query should return RUNNING. If there is no output, it means PostgreSQL service is not running.
 . Start:  net start "__SRVC_NAME__"
-. Stop:  net stop "__SRVC_NAME__"
+. Stop:   net stop "__SRVC_NAME__"
 
 
 Connect to PostgreSQL via psql
@@ -95,6 +96,12 @@ Please refer to PostGIS documentation here (https://postgis.net/docs/postgis_gda
 
 Please visit PostGIS official website for more details about PostGIS.
 https://postgis.net/
+
+
+Bug Reports and Feedback
+========================
+For bug reports and  feedback, please contact via pginstaller@2ndquadrant.com or use our contact form on our Postgres Installer page:
+https://www.2ndquadrant.com/en/resources/postgresql-installer-2ndquadrant/
 
 
 Contact Us

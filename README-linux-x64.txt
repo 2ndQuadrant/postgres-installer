@@ -1,19 +1,21 @@
-Welcome to PostgreSQL Installer by 2ndQuadrant
-==============================================
+Welcome to Postgres Installer by 2ndQuadrant
+============================================
 
-PostgreSQL Installer by 2ndquadrant is a GUI based, user-friendly installer for PostgreSQL that is digitally signed and certified by 2ndQuadrant. The installer is currently available for PostgreSQL versions 9.5, 9.6, 10 and 11(beta) and has the ability to run in graphical, command line, or quiet installation modes for  Windows, OSX and Linux.
+Postgres Installer is a GUI based, user-friendly installer for PostgreSQL that is digitally signed and certified by 2ndQuadrant. The installer is currently available for PostgreSQL versions 9.5, 9.6, 10 and 11(beta) and has the ability to run in graphical, command line, or quiet installation modes for  Windows, OSX and Linux.
 
 
 Features
 ========
 
-PostgreSQL Installer comes with features listed below. In addition to these, many are in pipeline and will be available in upcoming releases.
+Postgres Installer comes with features listed below. In addition to these, many are in pipeline and will be available in upcoming releases.
 
+. OmniDB support
 . PostGIS support
 . OpenSSL support
-. Zlib support
 . Python3 support
-. OmniDB support
+. Zlib support
+. LDAP support 
+. Kerberos support 
 
 For more details please visit.
 https://www.2ndquadrant.com/en/resources/PostgreSQL-installer-2ndquadrant/
@@ -30,7 +32,7 @@ Open terminal and type following commands
 
 . Status: sudo service "__SRVC_NAME__" status
 . Start:  sudo service "__SRVC_NAME__" start
-. Stop :  sudo service "__SRVC_NAME__" stop
+. Stop:   sudo service "__SRVC_NAME__" stop
 
 
 Connect to PostgreSQL via psql
@@ -99,6 +101,12 @@ Please visit PostGIS official website for more details about PostGIS.
 https://postgis.net/
 
 
+Bug Reports and Feedback
+========================
+For bug reports and  feedback, please contact via pginstaller@2ndquadrant.com or use our contact form on our Postgres Installer page:
+https://www.2ndquadrant.com/en/resources/postgresql-installer-2ndquadrant/
+
+
 Contact Us
 ==========
 
@@ -114,3 +122,5 @@ Fax:     +44 870 838 1077
 Email:   info@2ndQuadrant.com
 
 For detailed queries please visit our website: https://2ndQuadrant.com
+
+

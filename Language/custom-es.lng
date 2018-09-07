@@ -1,4 +1,4 @@
-Installer.Welcome.Title=Configuración - PostgreSQL Installer por 2ndQuadrant
+Installer.Welcome.Title=Configuración- Postgres Installer por 2ndQuadrant
 Installer.Welcome.Text=Bienvenido al %1$s Asistente de configuración.
 
 summary.title=Resumen de la Instalación

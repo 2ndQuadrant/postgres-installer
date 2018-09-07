@@ -1,4 +1,4 @@
-Installer.Welcome.Title=Setup - PostgreSQL Installer by 2ndQuadrant
+Installer.Welcome.Title=Setup - Postgres Installer by 2ndQuadrant
 Installer.Welcome.Text=Welcome to the %1$s Setup Wizard.
 
 summary.title=Installation Summary
