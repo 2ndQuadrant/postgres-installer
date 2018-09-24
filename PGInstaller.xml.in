@@ -337,35 +337,54 @@ ${msg(summary.confirm)}
                     <recurseContainers>1</recurseContainers>
                     <recurseObjects>1</recurseObjects>
                 </setWindowsACL>
+                <setInstallerVariable>
+			<name>systemTempDir</name>
+			<value>${system_temp_directory}</value>
+		</setInstallerVariable>
+                <if>
+                        <actionList>
+                                <setInstallerVariable>
+                                        <name>systemTempDir</name>
+                                        <value>${systemTempDir.dos}</value>
+                                </setInstallerVariable>
+                        </actionList>
+                        <conditionRuleList>
+                                <compareText>
+                                        <logic>equals</logic>
+                                        <text>windows</text>
+                                        <value>${platform_name}</value>
+                                </compareText>
+                        </conditionRuleList>
+                </if>
                 <deleteFile>
                     <matchHiddenFiles>1</matchHiddenFiles>
-                    <path>${system_temp_directory}/.initdbpwd</path>
+                    <path>${systemTempDir}/.initdbpwd</path>
                 </deleteFile>
                 <addTextToFile>
-                    <file>${system_temp_directory}/.initdbpwd</file>
+                    <file>${systemTempDir}/.initdbpwd</file>
                     <text>${superuser_password}</text>
                 </addTextToFile>
                 <changeOSXAttributes>
                     <creator></creator>
-                    <files>${system_temp_directory}/.initdbpwd</files>
+                    <files>${systemTempDir}/.initdbpwd</files>
                     <hidden>1</hidden>
                     <type>TEXT</type>
                 </changeOSXAttributes>
                 <changeWindowsAttributes>
-                    <files>${system_temp_directory}/.initdbpwd</files>
+                    <files>${systemTempDir}/.initdbpwd</files>
                     <hidden>1</hidden>
                     <readOnly>1</readOnly>
                 </changeWindowsAttributes>
                 <runProgram>
                     <explanation>Initializing PostgreSQL Server</explanation>
                     <program>${installdir}/${product_version}/bin/initdb</program>
-                    <programArguments>-D "${data_dir}" -U postgres --pwfile ${system_temp_directory}/.initdbpwd -A md5</programArguments>
+                    <programArguments>-D "${data_dir}" -U postgres --pwfile ${systemTempDir}/.initdbpwd -A md5</programArguments>
                     <progressText>${msg(progress.initdb)}</progressText>
                     <runAs>postgres</runAs>
                 </runProgram>
                 <deleteFile>
                     <matchHiddenFiles>1</matchHiddenFiles>
-                    <path>${system_temp_directory}/.initdbpwd</path>
+                    <path>${systemTempDir}/.initdbpwd</path>
                 </deleteFile>
                 <runProgram>
                     <abortOnError>0</abortOnError>
