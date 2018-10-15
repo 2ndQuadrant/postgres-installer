@@ -1606,6 +1606,10 @@ ${msg(existing.upgraded)} </explanation>
                             <pattern>__OMNIHOME__</pattern>
                             <value>${formattedOmniHome}</value>
                         </substitution>
+                        <substitution>
+                            <pattern>__INSTALLDIR__</pattern>
+                            <value>${installdir}</value>
+                        </substitution>
                     </substitutionList>
                 </substitute>
             </postInstallationActionList>
@@ -1648,6 +1652,49 @@ ${msg(existing.upgraded)} </explanation>
                     <distributionFileList>
                         <distributionDirectory>
                             <origin>${build_project_directory}/Builds/Linux/OmniDB</origin>
+                        </distributionDirectory>
+                    </distributionFileList>
+                </folder>
+            </folderList>
+        </component>
+        <component>
+            <name>pl_languages</name>
+            <description>pl-languages</description>
+            <canBeEdited>1</canBeEdited>
+            <detailedDescription>PL-languages pack include (Procedural Language-Perl) which is  procedural language supported by the PostgreSQL RDBMS.</detailedDescription>
+            <selected>0</selected>
+            <show>1</show>
+            <folderList>
+                <folder>
+                    <description>pl-languages</description>
+                    <destination>${installdir}/</destination>
+                    <name>pl_languages_osx</name>
+                    <platforms>osx</platforms>
+                    <distributionFileList>
+                        <distributionDirectory>
+                            <origin>${build_project_directory}/Builds/OSX/pl-languages</origin>
+                        </distributionDirectory>
+                    </distributionFileList>
+                </folder>
+                <folder>
+                    <description>pl-languages</description>
+                    <destination>${installdir}/</destination>
+                    <name>pl_languages_windows</name>
+                    <platforms>windows</platforms>
+                    <distributionFileList>
+                        <distributionDirectory>
+                            <origin>${build_project_directory}/Builds/Windows/pl-languages</origin>
+                        </distributionDirectory>
+                    </distributionFileList>
+                </folder>
+                <folder>
+                    <description>pl-languages</description>
+                    <destination>${installdir}/</destination>
+                    <name>pl_languages_linux_x64</name>
+                    <platforms>linux-x64</platforms>
+                    <distributionFileList>
+                        <distributionDirectory>
+                            <origin>${build_project_directory}/Builds/Linux/pl-languages</origin>
                         </distributionDirectory>
                     </distributionFileList>
                 </folder>
@@ -1795,7 +1842,7 @@ ${msg(existing.upgraded)} </explanation>
             <actionList>
                 <componentSelection>
                     <deselect>pg_96</deselect>
-                    <select>pg_96_upgrade,omnidb</select>
+                    <select>pg_96_upgrade,omnidb,pl_languages</select>
                 </componentSelection>
                 <setInstallerVariable>
                     <name>project.component(pg_96_upgrade).canBeEdited</name>
@@ -1803,6 +1850,10 @@ ${msg(existing.upgraded)} </explanation>
                 </setInstallerVariable>
                 <setInstallerVariable>
                     <name>project.component(omnidb).canBeEdited</name>
+                    <value>1</value>
+                </setInstallerVariable>
+                <setInstallerVariable>
+                    <name>project.component(pl_languages).canBeEdited</name>
                     <value>1</value>
                 </setInstallerVariable>
                 <setInstallerVariable>

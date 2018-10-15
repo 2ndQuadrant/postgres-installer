@@ -16,6 +16,8 @@ Postgres Installer comes with features listed below. In addition to these, many 
 . Zlib support
 . LDAP support 
 . Kerberos support 
+. ICU support
+. Perl support
 
 For more details please visit.
 https://www.2ndquadrant.com/en/resources/PostgreSQL-installer-2ndquadrant/
@@ -99,6 +101,45 @@ Please refer to PostGIS documentation here (https://postgis.net/docs/postgis_gda
 
 Please visit PostGIS official website for more details about PostGIS.
 https://postgis.net/
+
+
+Introduction to ICU
+===================
+ICU stands for International Components for Unicode. It provide the ability to handle postgres database and run queries on your local language i,e.
+
+. English
+. French
+. German
+. Urdu
+. Italian
+. Hindi
+
+And many more of course. You can run query bellow to see which languages are supported
+
+. select * from pg_collation;
+
+
+Introduction to Perl
+====================
+PL/Perl (Procedural Language/Perl) is a procedural language supported by the PostgreSQL RDBMS.
+PL/Perl, as an imperative programming language, allows more control than the relational algebra of SQL. Programs created in the PL/Perl language are called functions and can use most of the features that the Perl programming language provides,
+
+Setting up Perl
+===============
+
+. Open terminal
+. Shift to postgres user. su - postgres
+
+. Set following paths. 
+  export PATH=$PATH:__INSTALLDIR__/pl-languages/perl-5.26/bin
+  export LD_LIBRARY_PATH=__INSTALLDIR__/pl-languages/perl-5.26/lib/CORE
+  export PERL5LIB=__INSTALLDIR__/pl-languages/perl-5.26/lib
+
+. Restart the postgreSQL service
+. Connect to 'psql'
+. Run query 'CREATE LANGUAGE plperl;'
+
+And you are done now you can create any function that you want
 
 
 Bug Reports and Feedback
