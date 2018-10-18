@@ -124,8 +124,11 @@ PL/Perl, as an imperative programming language, allows more control than the rel
 Setting up Perl
 ===============
 
-. Go into 'Environment variables' and set path of Perl which is '__INSTALLDIR__\pl-languages\perl-5.26\bin'
-. Open 'cmd' and restart the postgreSQL service
+NOTE: if you want to restart service by service name then you should add this path to 'Environment variables'
+
+. Open 'cmd'
+. set PATH=__INSTALLDIR__\pl-languages\perl-5.26\bin;%PATH%
+. Rstart the service by pg_ctl
 . Connect to 'psql'
 . Run query 'CREATE LANGUAGE plperl;'
 
