@@ -122,12 +122,14 @@ Setting up Perl
 . Open terminal
 . Shift to postgres user. su - postgres
 
+NOTE: If you want to restart service by service name then you should export these paths in bashrc file
+
 . Set following paths.
-  export PATH=$PATH:__INSTALLDIR__/pl-languages/perl-5.26/bin
+  export PATH=__INSTALLDIR__/pl-languages/perl-5.26/bin:$PATH
   export LD_LIBRARY_PATH=__INSTALLDIR__/pl-languages/perl-5.26/lib/CORE
   export PERL5LIB=__INSTALLDIR__/pl-languages/perl-5.26/lib
 
-. Restart the postgreSQL service
+. Restart the postgreSQL service by pg_ctl
 . Connect to 'psql'
 . Run query 'CREATE LANGUAGE plperl;'
 
