@@ -1,7 +1,7 @@
 Welcome to Postgres Installer by 2ndQuadrant
 ============================================
 
-Postgres Installer is a GUI based, user-friendly installer for PostgreSQL that is digitally signed and certified by 2ndQuadrant. The installer is currently available for PostgreSQL versions 9.5, 9.6, 10 and 11(beta) and has the ability to run in graphical, command line, or quiet installation modes for  Windows, OSX and Linux.
+Postgres Installer is a GUI based, user-friendly installer for PostgreSQL that is digitally signed and certified by 2ndQuadrant. The installer is currently available for PostgreSQL versions 9.5, 9.6, 10 and 11(beta) and has the ability to run in graphical, command line, or quiet installation modes for  Windows, MacOS and Linux.
 
 
 Features
@@ -18,6 +18,7 @@ Postgres Installer comes with features listed below. In addition to these, many 
 . Kerberos support 
 . ICU support
 . Perl support
+. Tcl support
 
 For more details please visit.
 https://www.2ndquadrant.com/en/resources/PostgreSQL-installer-2ndquadrant/
@@ -114,9 +115,13 @@ ICU stands for International Components for Unicode. It provide the ability to h
 . Italian
 . Hindi
 
-And many more of course. You can run query bellow to see which languages are supported
+And many more of course. You can run query below to see which languages are supported
 
+NOTE: Database encoding needs to be set before using ICU.
+
+. create database db_name ENCODING 'UTF-8';
 . select * from pg_collation;
+
 
 
 Introduction to Perl
@@ -130,18 +135,33 @@ Setting up Perl
 . Open terminal
 . Shift to postgres user. su - postgres
 
-NOTE: If you want to restart service by service name then you should export these paths in bashrc file
+. Set following paths.
+  export PATH=/opt/2ndQuadrant/PostgreSQL/pl-languages/Perl-5.26/bin:$PATH
+  export LD_LIBRARY_PATH=/opt/2ndQuadrant/PostgreSQL/pl-languages/Perl-5.26/lib/CORE:$LD_LIBRARY_PATH
+  export PERL5LIB=/opt/2ndQuadrant/PostgreSQL/pl-languages/Perl-5.26/lib
 
-. Set following paths. 
-  export PATH=__INSTALLDIR__/pl-languages/perl-5.26/bin:$PATH
-  export LD_LIBRARY_PATH=__INSTALLDIR__/pl-languages/perl-5.26/lib/CORE
-  export PERL5LIB=__INSTALLDIR__/pl-languages/perl-5.26/lib
-
-. Restart the postgreSQL service by pg_ctl
+. Restart the postgreSQL service
 . Connect to 'psql'
 . Run query 'CREATE LANGUAGE plperl;'
 
 And you are done now you can create any function that you want
+
+
+Introduction to Tcl
+===================
+PL/Tcl is a loadable procedural language for the PostgreSQL database system that enables the Tcl language to be used to write functions and trigger procedures.
+
+Setting up Tcl
+==============
+. Open terminal
+. Shift to postgres user. su - postgres
+. Set following paths.
+  export PATH=/opt/2ndQuadrant/PostgreSQL/pl-languages/Tcl-8.6/bin:$PATH
+  export LD_LIBRARY_PATH=/opt/2ndQuadrant/PostgreSQL/pl-languages/Tcl-8.6/lib:$LD_LIBRARY_PATH
+
+. Restart the postgreSQL service
+. Connect to 'psql'
+. Run query 'CREATE LANGUAGE pltcl;'
 
 
 Bug Reports and Feedback
