@@ -1,7 +1,7 @@
 Welcome to Postgres Installer by 2ndQuadrant
 ============================================
 
-Postgres Installer is a GUI based, user-friendly installer for PostgreSQL that is digitally signed and certified by 2ndQuadrant. The installer is currently available for PostgreSQL versions 9.5, 9.6, 10 and 11(beta) and has the ability to run in graphical, command line, or quiet installation modes for  Windows, MacOS and Linux.
+Postgres Installer is a GUI based, user-friendly installer for PostgreSQL that is digitally signed and certified by 2ndQuadrant. The installer is currently available for PostgreSQL versions 9.5, 9.6, 10 and 11. Postgres Installer has the ability to run in graphical, command line, or quiet installation modes for  Windows, MacOS and Linux.
 
 
 Features
@@ -9,19 +9,19 @@ Features
 
 Postgres Installer comes with features listed below. In addition to these, many are in pipeline and will be available in upcoming releases.
 
-. OmniDB support
-. PostGIS support
-. OpenSSL support
-. Python3 support
-. Zlib support
-. LDAP support 
-. Kerberos support 
-. ICU support
-. Perl support
-. Tcl support
+. OmniDB
+. PostGIS
+. OpenSSL
+. Python3
+. Zlib
+. LDAP
+. Kerberos
+. ICU
+. Perl
+. Tcl
 
 For more details please visit.
-https://www.2ndquadrant.com/en/resources/PostgreSQL-installer-2ndquadrant/
+https://www.2ndquadrant.com/en/resources/postgresql-installer-2ndquadrant/
 
 
 Controlling PostgreSQL service
@@ -136,9 +136,9 @@ Setting up Perl
 . Shift to postgres user. su - postgres
 
 . Set following paths.
-  export PATH=/opt/2ndQuadrant/PostgreSQL/pl-languages/Perl-5.26/bin:$PATH
-  export LD_LIBRARY_PATH=/opt/2ndQuadrant/PostgreSQL/pl-languages/Perl-5.26/lib/CORE:$LD_LIBRARY_PATH
-  export PERL5LIB=/opt/2ndQuadrant/PostgreSQL/pl-languages/Perl-5.26/lib
+  export PATH=__INSTALLDIR__/pl-languages/Perl-5.26/bin:$PATH
+  export LD_LIBRARY_PATH=__INSTALLDIR__/pl-languages/Perl-5.26/lib/CORE:$LD_LIBRARY_PATH
+  export PERL5LIB=__INSTALLDIR__/pl-languages/Perl-5.26/lib
 
 . Restart the postgreSQL service
 . Connect to 'psql'
@@ -156,8 +156,8 @@ Setting up Tcl
 . Open terminal
 . Shift to postgres user. su - postgres
 . Set following paths.
-  export PATH=/opt/2ndQuadrant/PostgreSQL/pl-languages/Tcl-8.6/bin:$PATH
-  export LD_LIBRARY_PATH=/opt/2ndQuadrant/PostgreSQL/pl-languages/Tcl-8.6/lib:$LD_LIBRARY_PATH
+  export PATH=__INSTALLDIR__/pl-languages/Tcl-8.6/bin:$PATH
+  export LD_LIBRARY_PATH=__INSTALLDIR__/pl-languages/Tcl-8.6/lib:$LD_LIBRARY_PATH
 
 . Restart the postgreSQL service
 . Connect to 'psql'
