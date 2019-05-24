@@ -50,3 +50,6 @@ info.createdatadir=Erzeuge das Datenverzeichnis für den PostgreSQL Server
 info.installsample=Intalliere Beispieldatenbank
 
 error.runtime_installation=Unbekannter Fehler bei der Installation von Laufzeitbibliotheken (runtime libraries)
+
+description.omniDB=OmniDB ist ein browserbasierte graphische Datenbankadministrationsoberfläche. Sie ist enwickelt für den Zugriff auf und die Verwaltung verschiedener Datenbanksysteme, primär PostgreSQL, sowie z.B. Oracle und MySQL. OmniDB kann entweder als App oder über einen Browser ausgeführt werden. Damit stehen verschiedene Zugriffspfade zur Verfügung, das Design ist auf bestmögliche Sicherheit ausgerichtet.
+description.pl-languages=Das PL-Sprachpaket von 2ndQuadrant unterstützt pl/Perl und pl/Tcl. Es ermöglicht dem Benutzer, Funktionen in diesen Sprachen zu programmieren.
