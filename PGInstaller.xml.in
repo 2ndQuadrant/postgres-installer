@@ -9,6 +9,11 @@
     <splashImage>${build_project_directory}/logos/2ndQSplash.png</splashImage>
     <allowLanguageSelection>1</allowLanguageSelection>
     <enableDebugger>__DEBUG__</enableDebugger>
+
+    <!-- Installer Size -->
+    <width>550</width>
+    <height>400</height>
+
     <initializationActionList>
         <setInstallerVariable name="slash" value="/" />
         <setInstallerVariable name="slash" value="\" >
@@ -1636,7 +1641,7 @@ ${msg(existing.upgraded)} </explanation>
             <name>omnidb</name>
             <description>OmniDB</description>
             <canBeEdited>1</canBeEdited>
-            <detailedDescription>OmniDB is an open source browser-based app designed to access and manage many different Database Management systems, e.g. PostgreSQL, Oracle and MySQL. OmniDB can run either as an App or via Browser, combining the flexibility needed for various access paths with a design that puts security first.</detailedDescription>
+            <detailedDescription>${msg(description.omniDB)}</detailedDescription>
             <selected>0</selected>
             <show>1</show>
             <folderList>
@@ -1679,7 +1684,7 @@ ${msg(existing.upgraded)} </explanation>
             <name>pl_languages</name>
             <description>pl-languages</description>
             <canBeEdited>1</canBeEdited>
-            <detailedDescription>PL-languages pack include (Procedural Language-Perl) which is  procedural language supported by the PostgreSQL RDBMS.</detailedDescription>
+            <detailedDescription>${msg(description.pl-languages)}</detailedDescription>
             <selected>0</selected>
             <show>1</show>
             <folderList>
