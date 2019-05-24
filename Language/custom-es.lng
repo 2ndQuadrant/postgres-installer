@@ -49,4 +49,7 @@ info.createuser=Creando el usuario 'postgres'
 info.createdatadir=Creando el directorio de datos para el servidor PostgreSQL
 info.installsample=Instalando la base de datos de ejemplo
 
-error.runtime_installation=Error desconocido en instalación de bibliotecas de ejecución
+error.runtime_installation=Error desconocido en instalación de bibliotecas de ejecuci�
+
+description.omniDB=OmniDB es una aplicación open source, creada para acceder y administrar diferentes bases de datos, por ejemplo: PostgreSQL, Oracle y MySQL. OmniDB puede ejecutarse como una aplicación o mediante un navegador. Combina la flexibilidad necesaria para varias rutas de acceso, teniendo como prioridad la seguridad.
+description.pl-languages=El paquete PL-language de 2ndQuadrant incluye soporte para (pl / Perl, pl / Tcl). Éste permite al usuario escribir funciones en cualquiera de los lenguajes mencionados.
