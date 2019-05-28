@@ -339,33 +339,42 @@ ${msg(summary.confirm)}
                     <explanation>${msg(info.createdatadir)}</explanation>
                     <path>${data_dir}</path>
                 </createDirectory>
+		<actionGroup>
+			<actionList>
+				<runProgram>
+					<program>icacls</program>
+					<programArguments>"${data_dir}" /inheritance:r</programArguments>
+				</runProgram>
+				<runProgram>
+					<program>icacls</program>
+					<programArguments>"${data_dir}" /T /Q /grant "${system_username}:(OI)(CI)F"</programArguments>
+				</runProgram>
+				<runProgram>
+					<program>icacls</program>
+					<programArguments>"${data_dir}" /T /Q /grant "*S-1-5-20:(OI)(CI)F"</programArguments>
+				</runProgram>
+				<runProgram>
+					<program>icacls</program>
+					<programArguments>"${data_dir}" /T /Q /grant "*S-1-3-0:(OI)(CI)F"</programArguments>
+				</runProgram>
+				<runProgram>
+					<program>icacls</program>
+					<programArguments>"${data_dir}" /T /Q /grant "*S-1-5-18:(OI)(CI)F"</programArguments>
+				</runProgram>
+				<runProgram>
+					<program>icacls</program>
+					<programArguments>"${data_dir}" /T /Q /grant "*S-1-5-32-544:(OI)(CI)F"</programArguments>
+				</runProgram>
+			</actionList>
+			<ruleList>
+				<compareText logic ="contains" text="${platform_name}" value="windows" />
+			</ruleList>
+		</actionGroup>
                 <changeOwnerAndGroup>
                     <files>${data_dir}</files>
                     <group></group>
                     <owner>postgres</owner>
                 </changeOwnerAndGroup>
-                <setWindowsACL>
-                    <action>allow</action>
-                    <files>${data_dir}</files>
-                    <permissions>file_generic_execute file_generic_read</permissions>
-                    <users>S-1-5-32-545</users>
-                    <recurseContainers>1</recurseContainers>
-                    <recurseObjects>1</recurseObjects>
-                </setWindowsACL>
-                <setWindowsACL>
-                    <action>allow</action>
-                    <files>${data_dir}</files>
-                    <permissions>generic_all</permissions>
-                    <users>S-1-5-20</users>
-                    <recurseContainers>1</recurseContainers>
-                    <recurseObjects>1</recurseObjects>
-                </setWindowsACL>
-                <setWindowsACL>
-                    <action>allow</action>
-                    <files>${data_dir}</files>
-                    <permissions>generic_all</permissions>
-                    <users>S-1-3-1</users>
-                </setWindowsACL>
                 <setInstallerVariable>
 			<name>systemTempDir</name>
 			<value>${system_temp_directory}</value>
@@ -1007,6 +1016,45 @@ ${msg(existing.upgraded)} </explanation>
                             <displayName></displayName>
                             <serviceName>PostgreSQL-2ndQ ${product_version}</serviceName>
                         </stopWindowsService>
+			<actionGroup>
+				<actionList>
+					<runProgram>
+						<program>icacls</program>
+						<programArguments>"${data_dir}" /inheritance:r</programArguments>
+					</runProgram>
+					<runProgram>
+						<program>icacls</program>
+						<programArguments>"${data_dir}"  /remove:g Users</programArguments>
+					</runProgram>
+					<runProgram>
+						<program>icacls</program>
+						<programArguments>"${data_dir}"  /remove:g Everyone</programArguments>
+					</runProgram>
+					<runProgram>
+						<program>icacls</program>
+						<programArguments>"${data_dir}" /T /Q /grant "${system_username}:(OI)(CI)F"</programArguments>
+					</runProgram>
+					<runProgram>
+						<program>icacls</program>
+						<programArguments>"${data_dir}" /T /Q /grant "*S-1-5-20:(OI)(CI)F"</programArguments>
+					</runProgram>
+					<runProgram>
+						<program>icacls</program>
+						<programArguments>"${data_dir}" /T /Q /grant "*S-1-3-0:(OI)(CI)F"</programArguments>
+					</runProgram>
+					<runProgram>
+						<program>icacls</program>
+						<programArguments>"${data_dir}" /T /Q /grant "*S-1-5-18:(OI)(CI)F"</programArguments>
+					</runProgram>
+					<runProgram>
+						<program>icacls</program>
+						<programArguments>"${data_dir}" /T /Q /grant "*S-1-5-32-544:(OI)(CI)F"</programArguments>
+					</runProgram>
+				</actionList>
+				<ruleList>
+					<compareText logic ="contains" text="${platform_name}" value="windows" />
+				</ruleList>
+			</actionGroup>
                         <actionGroup>
                             <progressText>Stop Debian service 'postgresql-2ndQ-${product_version}'</progressText>
                             <actionList>
