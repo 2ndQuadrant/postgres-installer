@@ -206,7 +206,7 @@
                     <preShowPageActionList>
                         <setInstallerVariable>
                             <name>next_page</name>
-                            <value>summary</value>
+                            <value>superuser_password</value>
                         </setInstallerVariable>
                         <setInstallerVariable>
                             <name>back_page</name>
