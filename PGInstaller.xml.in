@@ -130,8 +130,8 @@
                     <title>${msg(summary.pg_port)}</title>
                     <description>${msg(pg_port.description)}</description>
                     <explanation>${msg(pg_port.explanation)}</explanation>
-                    <value>5432</value>
-                    <default>5432</default>
+                    <value>${freePort}</value>
+                    <default>${freePort}</default>
                     <allowEmptyValue>0</allowEmptyValue>
                     <width>30</width>
                     <postShowPageActionList>
@@ -144,6 +144,13 @@
                             <value>data_dir</value>
                         </setInstallerVariable>
                     </postShowPageActionList>
+                    <preShowPageActionList>
+                        <getFreePort>
+                            <variable>freePort</variable>
+                            <initialPort>5432</initialPort>
+                            <finalPort>65535</finalPort>
+                        </getFreePort>
+                    </preShowPageActionList>
                     <validationActionList>
                         <throwError>
                             <text>${msg(pg_port.error)}</text>
