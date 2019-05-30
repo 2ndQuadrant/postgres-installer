@@ -347,6 +347,7 @@ ${msg(summary.confirm)}
                     <path>${data_dir}</path>
                 </createDirectory>
 		<actionGroup>
+			<progressText>Setting Windows ACL permissions on data dir</progressText>
 			<actionList>
 				<runProgram>
 					<program>icacls</program>
@@ -1007,158 +1008,6 @@ ${msg(existing.upgraded)} </explanation>
                     <image></image>
                     <postShowPageActionList>
                         <setInstallerVariable name="project.installationType" value="upgrade"/>
-                        <stopOSXService>
-                            <abortOnError>0</abortOnError>
-                            <serviceName>org.2ndQ.postgresql-${product_version}</serviceName>
-                            <showMessageOnError>0</showMessageOnError>
-                        </stopOSXService>
-                        <deleteOSXService>
-                            <abortOnError>0</abortOnError>
-                            <scope>system</scope>
-                            <serviceName>org.2ndQ.postgresql-${product_version}</serviceName>
-                            <showMessageOnError>0</showMessageOnError>
-                        </deleteOSXService>
-                        <stopWindowsService>
-                            <delay>15000</delay>
-                            <displayName></displayName>
-                            <serviceName>PostgreSQL-2ndQ ${product_version}</serviceName>
-                        </stopWindowsService>
-			<actionGroup>
-				<actionList>
-					<runProgram>
-						<program>icacls</program>
-						<programArguments>"${data_dir}" /inheritance:r</programArguments>
-					</runProgram>
-					<runProgram>
-						<program>icacls</program>
-						<programArguments>"${data_dir}"  /remove:g Users</programArguments>
-					</runProgram>
-					<runProgram>
-						<program>icacls</program>
-						<programArguments>"${data_dir}"  /remove:g Everyone</programArguments>
-					</runProgram>
-					<runProgram>
-						<program>icacls</program>
-						<programArguments>"${data_dir}" /T /Q /grant "${system_username}:(OI)(CI)F"</programArguments>
-					</runProgram>
-					<runProgram>
-						<program>icacls</program>
-						<programArguments>"${data_dir}" /T /Q /grant "*S-1-5-20:(OI)(CI)F"</programArguments>
-					</runProgram>
-					<runProgram>
-						<program>icacls</program>
-						<programArguments>"${data_dir}" /T /Q /grant "*S-1-3-0:(OI)(CI)F"</programArguments>
-					</runProgram>
-					<runProgram>
-						<program>icacls</program>
-						<programArguments>"${data_dir}" /T /Q /grant "*S-1-5-18:(OI)(CI)F"</programArguments>
-					</runProgram>
-					<runProgram>
-						<program>icacls</program>
-						<programArguments>"${data_dir}" /T /Q /grant "*S-1-5-32-544:(OI)(CI)F"</programArguments>
-					</runProgram>
-				</actionList>
-				<ruleList>
-					<compareText logic ="contains" text="${platform_name}" value="windows" />
-				</ruleList>
-			</actionGroup>
-                        <actionGroup>
-                            <progressText>Stop Debian service 'postgresql-2ndQ-${product_version}'</progressText>
-                            <actionList>
-                                <runProgram>
-                                    <program>service</program>
-                                    <programArguments>postgresql-2ndQ-${product_version} stop</programArguments>
-                                    <progressText>${msg(progress.stop_server)}</progressText>
-                                </runProgram>
-                            </actionList>
-                            <ruleList>
-                                <compareText>
-                                    <logic>equals</logic>
-                                    <text>${linux_distribution}</text>
-                                    <value>debian</value>
-                                </compareText>
-                            </ruleList>
-                        </actionGroup>
-                        <actionGroup>
-                            <progressText>Stop Non-Debian service 'postgresql-2ndQ-${product_version}'</progressText>
-                            <ruleEvaluationLogic>or</ruleEvaluationLogic>
-                            <actionList>
-                                <runProgram>
-                                    <program>systemctl</program>
-                                    <programArguments>stop postgresql-2ndQ-${product_version}</programArguments>
-                                </runProgram>
-                                <runProgram>
-                                    <program>systemctl</program>
-                                    <programArguments>disable postgresql-2ndQ-${product_version}</programArguments>
-                                </runProgram>
-                                <runProgram>
-                                    <program>systemctl</program>
-                                    <programArguments>daemon-reload</programArguments>
-                                </runProgram>
-                                <runProgram>
-                                    <program>systemctl</program>
-                                    <programArguments>reset-failed</programArguments>
-                                </runProgram>
-                            </actionList>
-                            <ruleList>
-                                <compareText>
-                                    <logic>equals</logic>
-                                    <text>${linux_distribution}</text>
-                                    <value>redhat</value>
-                                </compareText>
-                                <compareText>
-                                    <logic>equals</logic>
-                                    <text>${linux_distribution}</text>
-                                    <value>suse</value>
-                                </compareText>
-                                <compareText>
-                                    <logic>equals</logic>
-                                    <text>${linux_distribution}</text>
-                                    <value>fedora</value>
-                                </compareText>
-                            </ruleList>
-                        </actionGroup>
-                        <actionGroup>
-                            <progressText>Stop service on other Linux distros</progressText>
-                            <actionList>
-                                <runProgram>
-                                    <program>${installdir}/${product_version}/bin/pg_ctl</program>
-                                    <programArguments>-D "${data_dir}"  -l "${data_dir}/logfile" stop</programArguments>
-                                    <progressText>${msg(progress.stop_server)}</progressText>
-                                    <runAs>postgres</runAs>
-                                    <workingDirectory>${installdir}/${product_version}/bin/</workingDirectory>
-                                </runProgram>
-                            </actionList>
-                            <ruleList>
-                                <compareText>
-                                    <logic>equals</logic>
-                                    <negate>1</negate>
-                                    <text>${linux_distribution}</text>
-                                    <value>debian</value>
-                                </compareText>
-                                <compareText>
-                                    <logic>equals</logic>
-                                    <negate>1</negate>
-                                    <text>${linux_distribution}</text>
-                                    <value>redhat</value>
-                                </compareText>
-                                <compareText>
-                                    <logic>equals</logic>
-                                    <negate>1</negate>
-                                    <text>${linux_distribution}</text>
-                                    <value>fedora</value>
-                                </compareText>
-                                <compareText>
-                                    <logic>equals</logic>
-                                    <negate>1</negate>
-                                    <text>${linux_distribution}</text>
-                                    <value>suse</value>
-                                </compareText>
-                                <platformTest>
-                                    <type>linux</type>
-                                </platformTest>
-                            </ruleList>
-                        </actionGroup>
                         <setInstallerVariable>
                             <name>next_page</name>
                             <value>components</value>
@@ -1468,7 +1317,7 @@ ${msg(existing.upgraded)} </explanation>
                     </ruleList>
                 </setInstallerVariable>
             </postInstallationActionList>
-            <preUninstallationActionList>
+            <readyToInstallActionList>
                 <actionGroup>
                     <progressText>Remove OSX Service</progressText>
                     <actionList>
@@ -1488,26 +1337,59 @@ ${msg(existing.upgraded)} </explanation>
                     </ruleList>
                 </actionGroup>
                 <actionGroup>
-                    <progressText>Remove Windows Service</progressText>
+                    <progressText>Stopping the database server</progressText>
                     <actionList>
                         <stopWindowsService>
                             <delay>15000</delay>
                             <displayName></displayName>
-                            <progressText>${msg(progress.stop_server)}</progressText>
                             <serviceName>PostgreSQL-2ndQ ${product_version}</serviceName>
                         </stopWindowsService>
-                        <runProgram>
-                            <explanation>Unregistering Windows PostgreSQL ${product_version} service</explanation>
-                            <program>${installdir}\${product_version}\bin\pg_ctl</program>
-                            <programArguments>unregister -N "PostgreSQL-2ndQ ${product_version}"</programArguments>
-                            <progressText>${msg(progress.unregister_service)}</progressText>
-                        </runProgram>
                     </actionList>
                     <ruleList>
                         <platformTest>
                             <type>windows</type>
                         </platformTest>
                     </ruleList>
+                </actionGroup>
+		<actionGroup>
+				<progressText>Setting Windows ACL permissions on data dir</progressText>
+                                <actionList>
+                                        <runProgram>
+                                                <program>icacls</program>
+                                                <programArguments>"${data_dir}" /inheritance:r</programArguments>
+                                        </runProgram>
+                                        <runProgram>
+                                                <program>icacls</program>
+                                                <programArguments>"${data_dir}"  /remove:g Users</programArguments>
+                                        </runProgram>
+                                        <runProgram>
+                                                <program>icacls</program>
+                                                <programArguments>"${data_dir}"  /remove:g Everyone</programArguments>
+                                        </runProgram>
+                                        <runProgram>
+                                                <program>icacls</program>
+                                                <programArguments>"${data_dir}" /T /Q /grant "${system_username}:(OI)(CI)F"</programArguments>
+                                        </runProgram>
+                                        <runProgram>
+                                                <program>icacls</program>
+                                                <programArguments>"${data_dir}" /T /Q /grant "*S-1-5-20:(OI)(CI)F"</programArguments>
+                                        </runProgram>
+                                        <runProgram>
+                                                <program>icacls</program>
+                                                <programArguments>"${data_dir}" /T /Q /grant "*S-1-3-0:(OI)(CI)F"</programArguments>
+                                        </runProgram>
+                                        <runProgram>
+                                                <program>icacls</program>
+                                                <programArguments>"${data_dir}" /T /Q /grant "*S-1-5-18:(OI)(CI)F"</programArguments>
+                                        </runProgram>
+                                        <runProgram>
+                                                <program>icacls</program>
+                                                <programArguments>"${data_dir}" /T /Q /grant "*S-1-5-32-544:(OI)(CI)F"</programArguments>
+                                        </runProgram>
+                                </actionList>
+                                <ruleList>
+                                        <compareText logic ="contains" text="${platform_name}" value="windows" />
+                                </ruleList>
                 </actionGroup>
                 <actionGroup>
                     <progressText>Remove Debian Service</progressText>
@@ -1611,7 +1493,7 @@ ${msg(existing.upgraded)} </explanation>
                         </platformTest>
                     </ruleList>
                 </runProgram>
-            </preUninstallationActionList>
+            </readyToInstallActionList>
         </component>
         <component>
             <name>readme</name>
