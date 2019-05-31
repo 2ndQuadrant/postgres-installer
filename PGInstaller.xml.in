@@ -183,6 +183,12 @@
                             <value>pg_port</value>
                         </setInstallerVariable>
                     </postShowPageActionList>
+                    <preShowPageActionList>
+                        <setInstallerVariable>
+                            <name>back_page</name>
+                            <value>pg_port</value>
+                        </setInstallerVariable>
+                    </preShowPageActionList>
                     <ruleList>
                         <platformTest>
                             <negate>1</negate>
@@ -212,10 +218,6 @@
                     </postShowPageActionList>
                     <preShowPageActionList>
                         <setInstallerVariable>
-                            <name>next_page</name>
-                            <value>superuser_password</value>
-                        </setInstallerVariable>
-                        <setInstallerVariable>
                             <name>back_page</name>
                             <value>pg_password</value>
                         </setInstallerVariable>
@@ -241,7 +243,6 @@ ${msg(summary.confirm)}
                         <setInstallerVariable name="back_page" value="superuser_password"/>
                     </postShowPageActionList>
                     <preShowPageActionList>
-                        <setInstallerVariable name="next_page" value="installation"/>
                         <setInstallerVariable name="back_page" value="superuser_password"/>
                     </preShowPageActionList>
                 </labelParameter>
