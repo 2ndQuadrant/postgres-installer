@@ -20,7 +20,10 @@ case "${unameOut}" in
     	mv /tmp/$$.tmp $3 || _die "Failed to move /tmp/$$.tmp to $3"
 ;;
     CYGWIN*)    machine=Cygwin;;
-    MINGW*)     machine=MinGw;;
+    MINGW*)     machine=MinGw
+	sed "s:$1:$string:g" $3 > "/tmp/$$.tmp" || _die "Failed for search and replace '$1' with '$string' in $3"
+        mv /tmp/$$.tmp $3 || _die "Failed to move /tmp/$$.tmp to $3"
+;;
     *)          machine="UNKNOWN:${unameOut}"
 esac
 
