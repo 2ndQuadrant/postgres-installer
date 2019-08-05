@@ -1,7 +1,7 @@
 Welcome to Postgres Installer by 2ndQuadrant
 ============================================
 
-Postgres Installer is a GUI based, user-friendly installer for PostgreSQL that is digitally signed and certified by 2ndQuadrant. The installer is currently available for PostgreSQL versions 9.5, 9.6, 10 and 11. Postgres Installer has the ability to run in graphical, command line, or quiet installation modes for  Windows, MacOS and Linux.
+Postgres Installer is a GUI based, user-friendly installer for PostgreSQL that is digitally signed and certified by 2ndQuadrant. The installer is currently available for PostgreSQL versions 9.5, 9.6, 10, 11 and 12(Beta). Postgres Installer has the ability to run in graphical, command line, or quiet installation modes for  Windows, MacOS and Linux.
 
 
 Features
@@ -81,6 +81,8 @@ Getting started with PostGIS
 
 PostGIS is a spatial database extender for PostgreSQL object-relational database. It add support for geographic objects allowing location queries to be run in SQL.
 
+NOTE: PostGIS is not supported for PostgreSQL 12(Beta)
+
 Some of the extensions required for PostGIS.
 
 . CREATE EXTENSION postgis;
@@ -122,7 +124,7 @@ NOTE: Database encoding needs to be set before using ICU.
 . create database db_name ENCODING 'UTF-8';
 . select * from pg_collation;
 
-
+NOTE: ICU is not supported on PostgreSQL 9.5 and 9.6
 
 Introduction to Perl
 ====================
@@ -140,7 +142,7 @@ Setting up Perl
   export LD_LIBRARY_PATH=__INSTALLDIR__/pl-languages/Perl-5.26/lib/CORE:$LD_LIBRARY_PATH
   export PERL5LIB=__INSTALLDIR__/pl-languages/Perl-5.26/lib
 
-. Restart the postgreSQL service
+. Restart the postgreSQL service using pg_ctl restart
 . Connect to 'psql'
 . Run query 'CREATE LANGUAGE plperl;'
 
@@ -159,7 +161,7 @@ Setting up Tcl
   export PATH=__INSTALLDIR__/pl-languages/Tcl-8.6/bin:$PATH
   export LD_LIBRARY_PATH=__INSTALLDIR__/pl-languages/Tcl-8.6/lib:$LD_LIBRARY_PATH
 
-. Restart the postgreSQL service
+. Restart the postgreSQL service using pg_ctl restart
 . Connect to 'psql'
 . Run query 'CREATE LANGUAGE pltcl;'
 
