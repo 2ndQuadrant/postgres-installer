@@ -643,13 +643,18 @@ ${msg(summary.confirm)}
                     <progressText>${msg(progress.start_server)}</progressText>
                     <runAs>postgres</runAs>
                     <workingDirectory>${installdir}/${product_version}/bin</workingDirectory>
-                    <ruleEvaluationLogic>or</ruleEvaluationLogic>
                     <ruleList>
                         <compareText>
                             <logic>equals</logic>
                             <negate>1</negate>
                             <text>${linux_distribution}</text>
                             <value>debian</value>
+                        </compareText>
+			<compareText>
+                            <logic>equals</logic>
+                            <negate>1</negate>
+                            <text>${linux_distribution}</text>
+                            <value>ubuntu</value>
                         </compareText>
                         <compareText>
                             <logic>equals</logic>
@@ -949,7 +954,6 @@ ${msg(summary.confirm)}
                     <progressText>${msg(progress.stop_server)}</progressText>
                     <runAs>postgres</runAs>
                     <workingDirectory>${installdir}/${product_version}/bin/</workingDirectory>
-                    <ruleEvaluationLogic>or</ruleEvaluationLogic>
                     <ruleList>
                         <compareText>
                             <logic>equals</logic>
@@ -959,6 +963,7 @@ ${msg(summary.confirm)}
                         </compareText>
 			 <compareText>
                             <logic>equals</logic>
+                            <negate>1</negate>
                             <text>${linux_distribution}</text>
                             <value>ubuntu</value>
                         </compareText>
@@ -1280,13 +1285,18 @@ ${msg(existing.upgraded)} </explanation>
                     <progressText>${msg(progress.start_server)}</progressText>
                     <runAs>postgres</runAs>
                     <workingDirectory>${installdir}/${product_version}/bin</workingDirectory>
-                    <ruleEvaluationLogic>or</ruleEvaluationLogic>
                     <ruleList>
                         <compareText>
                             <logic>equals</logic>
                             <negate>1</negate>
                             <text>${linux_distribution}</text>
                             <value>debian</value>
+                        </compareText>
+			<compareText>
+                            <logic>equals</logic>
+                            <negate>1</negate>
+                            <text>${linux_distribution}</text>
+                            <value>ubuntu</value>
                         </compareText>
                         <compareText>
                             <logic>equals</logic>
@@ -1520,7 +1530,6 @@ ${msg(existing.upgraded)} </explanation>
                     <progressText>${msg(progress.stop_server)}</progressText>
                     <runAs>postgres</runAs>
                     <workingDirectory>${installdir}/${product_version}/bin/</workingDirectory>
-                    <ruleEvaluationLogic>or</ruleEvaluationLogic>
                     <ruleList>
                         <compareText>
                             <logic>equals</logic>
@@ -1530,6 +1539,7 @@ ${msg(existing.upgraded)} </explanation>
                         </compareText>
 			 <compareText>
                             <logic>equals</logic>
+                            <negate>1</negate>
                             <text>${linux_distribution}</text>
                             <value>ubuntu</value>
                         </compareText>
