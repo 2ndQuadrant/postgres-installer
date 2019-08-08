@@ -470,11 +470,17 @@ ${msg(summary.confirm)}
                 <copyFile>
                     <destination>${installdir}/${product_version}/postgresql.bin</destination>
                     <origin>${installdir}/${product_version}/Installer_scripts/postgresql.bin.in</origin>
+                    <ruleEvaluationLogic>or</ruleEvaluationLogic>
                     <ruleList>
                         <compareText>
                             <logic>equals</logic>
                             <text>${linux_distribution}</text>
                             <value>debian</value>
+                        </compareText>
+			<compareText>
+                            <logic>equals</logic>
+                            <text>${linux_distribution}</text>
+                            <value>ubuntu</value>
                         </compareText>
                     </ruleList>
                 </copyFile>
@@ -514,11 +520,17 @@ ${msg(summary.confirm)}
                     <description>Product description</description>
                     <name>postgresql-2ndQ-${product_version}</name>
                     <program>${installdir}/${product_version}/postgresql.bin</program>
+                    <ruleEvaluationLogic>or</ruleEvaluationLogic>
                     <ruleList>
                         <compareText>
                             <logic>equals</logic>
                             <text>${linux_distribution}</text>
                             <value>debian</value>
+                        </compareText>
+			<compareText>
+                            <logic>equals</logic>
+                            <text>${linux_distribution}</text>
+                            <value>ubuntu</value>
                         </compareText>
                     </ruleList>
                 </addUnixService>
@@ -526,11 +538,17 @@ ${msg(summary.confirm)}
                     <program>service</program>
                     <programArguments>postgresql-2ndQ-${product_version} start</programArguments>
                     <progressText>${msg(progress.start_server)}</progressText>
+                    <ruleEvaluationLogic>or</ruleEvaluationLogic>
                     <ruleList>
                         <compareText>
                             <logic>equals</logic>
                             <text>${linux_distribution}</text>
                             <value>debian</value>
+                        </compareText>
+			<compareText>
+                            <logic>equals</logic>
+                            <text>${linux_distribution}</text>
+                            <value>ubuntu</value>
                         </compareText>
                     </ruleList>
                 </runProgram>
@@ -625,6 +643,7 @@ ${msg(summary.confirm)}
                     <progressText>${msg(progress.start_server)}</progressText>
                     <runAs>postgres</runAs>
                     <workingDirectory>${installdir}/${product_version}/bin</workingDirectory>
+                    <ruleEvaluationLogic>or</ruleEvaluationLogic>
                     <ruleList>
                         <compareText>
                             <logic>equals</logic>
@@ -864,11 +883,17 @@ ${msg(summary.confirm)}
                             <name>postgresql-2ndQ-${product_version}</name>
                         </removeUnixService>
                     </actionList>
+                    <ruleEvaluationLogic>or</ruleEvaluationLogic>
                     <ruleList>
                         <compareText>
                             <logic>equals</logic>
                             <text>${linux_distribution}</text>
                             <value>debian</value>
+                        </compareText>
+			<compareText>
+                            <logic>equals</logic>
+                            <text>${linux_distribution}</text>
+                            <value>ubuntu</value>
                         </compareText>
                     </ruleList>
                 </actionGroup>
@@ -924,12 +949,18 @@ ${msg(summary.confirm)}
                     <progressText>${msg(progress.stop_server)}</progressText>
                     <runAs>postgres</runAs>
                     <workingDirectory>${installdir}/${product_version}/bin/</workingDirectory>
+                    <ruleEvaluationLogic>or</ruleEvaluationLogic>
                     <ruleList>
                         <compareText>
                             <logic>equals</logic>
                             <negate>1</negate>
                             <text>${linux_distribution}</text>
                             <value>debian</value>
+                        </compareText>
+			 <compareText>
+                            <logic>equals</logic>
+                            <text>${linux_distribution}</text>
+                            <value>ubuntu</value>
                         </compareText>
                         <compareText>
                             <logic>equals</logic>
@@ -1076,11 +1107,17 @@ ${msg(existing.upgraded)} </explanation>
                 <copyFile>
                     <destination>${installdir}/${product_version}/postgresql.bin</destination>
                     <origin>${installdir}/${product_version}/Installer_scripts/postgresql.bin.in</origin>
+                    <ruleEvaluationLogic>or</ruleEvaluationLogic>
                     <ruleList>
                         <compareText>
                             <logic>equals</logic>
                             <text>${linux_distribution}</text>
                             <value>debian</value>
+                        </compareText>
+			 <compareText>
+                            <logic>equals</logic>
+                            <text>${linux_distribution}</text>
+                            <value>ubuntu</value>
                         </compareText>
                     </ruleList>
                 </copyFile>
@@ -1120,11 +1157,17 @@ ${msg(existing.upgraded)} </explanation>
                     <description>Product description</description>
                     <name>postgresql-2ndQ-${product_version}</name>
                     <program>${installdir}/${product_version}/postgresql.bin</program>
+                    <ruleEvaluationLogic>or</ruleEvaluationLogic>
                     <ruleList>
                         <compareText>
                             <logic>equals</logic>
                             <text>${linux_distribution}</text>
                             <value>debian</value>
+                        </compareText>
+			<compareText>
+                            <logic>equals</logic>
+                            <text>${linux_distribution}</text>
+                            <value>ubuntu</value>
                         </compareText>
                     </ruleList>
                 </addUnixService>
@@ -1132,11 +1175,17 @@ ${msg(existing.upgraded)} </explanation>
                     <program>service</program>
                     <programArguments>postgresql-2ndQ-${product_version} start</programArguments>
                     <progressText>${msg(progress.start_server)}</progressText>
+                    <ruleEvaluationLogic>or</ruleEvaluationLogic>
                     <ruleList>
                         <compareText>
                             <logic>equals</logic>
                             <text>${linux_distribution}</text>
                             <value>debian</value>
+                        </compareText>
+			<compareText>
+                            <logic>equals</logic>
+                            <text>${linux_distribution}</text>
+                            <value>ubuntu</value>
                         </compareText>
                     </ruleList>
                 </runProgram>
@@ -1231,6 +1280,7 @@ ${msg(existing.upgraded)} </explanation>
                     <progressText>${msg(progress.start_server)}</progressText>
                     <runAs>postgres</runAs>
                     <workingDirectory>${installdir}/${product_version}/bin</workingDirectory>
+                    <ruleEvaluationLogic>or</ruleEvaluationLogic>
                     <ruleList>
                         <compareText>
                             <logic>equals</logic>
@@ -1404,11 +1454,17 @@ ${msg(existing.upgraded)} </explanation>
                             <name>postgresql-2ndQ-${product_version}</name>
                         </removeUnixService>
                     </actionList>
+                    <ruleEvaluationLogic>or</ruleEvaluationLogic>
                     <ruleList>
                         <compareText>
                             <logic>equals</logic>
                             <text>${linux_distribution}</text>
                             <value>debian</value>
+                        </compareText>
+			<compareText>
+                            <logic>equals</logic>
+                            <text>${linux_distribution}</text>
+                            <value>ubuntu</value>
                         </compareText>
                     </ruleList>
                 </actionGroup>
@@ -1464,12 +1520,18 @@ ${msg(existing.upgraded)} </explanation>
                     <progressText>${msg(progress.stop_server)}</progressText>
                     <runAs>postgres</runAs>
                     <workingDirectory>${installdir}/${product_version}/bin/</workingDirectory>
+                    <ruleEvaluationLogic>or</ruleEvaluationLogic>
                     <ruleList>
                         <compareText>
                             <logic>equals</logic>
                             <negate>1</negate>
                             <text>${linux_distribution}</text>
                             <value>debian</value>
+                        </compareText>
+			 <compareText>
+                            <logic>equals</logic>
+                            <text>${linux_distribution}</text>
+                            <value>ubuntu</value>
                         </compareText>
                         <compareText>
                             <logic>equals</logic>
@@ -1721,11 +1783,17 @@ ${msg(existing.upgraded)} </explanation>
                             </ruleList>
                         </setInstallerVariable>
                     </actionList>
+                    <ruleEvaluationLogic>or</ruleEvaluationLogic>
                     <ruleList>
                         <compareText>
                             <logic>equals</logic>
                             <text>${linux_distribution}</text>
                             <value>debian</value>
+                        </compareText>
+			<compareText>
+                            <logic>equals</logic>
+                            <text>${linux_distribution}</text>
+                            <value>ubuntu</value>
                         </compareText>
                     </ruleList>
                 </actionGroup>
