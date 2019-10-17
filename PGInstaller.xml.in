@@ -456,17 +456,43 @@ ${msg(summary.confirm)}
                     <progressText>${msg(progress.start_service)}</progressText>
                     <serviceName>PostgreSQL-2ndQ ${product_version}</serviceName>
                 </startWindowsService>
+
+		<substitute>
+                    <files>${installdir}${slash}${product_version}${slash}Installer_scripts${slash}PGSvc.sh</files>
+                    <type>exact</type>
+                    <substitutionList>
+                        <substitution>
+                            <pattern>_PGPORT_</pattern>
+                            <value>${pg_port}</value>
+                        </substitution>
+                        <substitution>
+                            <pattern>_PLPACKAGE_</pattern>
+                            <value>${installdir}/pl-languages</value>
+                        </substitution>
+                        <substitution>
+                            <pattern>_PGHOME_</pattern>
+                            <value>${installdir}${slash}${product_version}</value>
+                        </substitution>
+                    </substitutionList>
+                </substitute>
+
+		<copyFile>
+			<origin>${installdir}${slash}${product_version}${slash}Installer_scripts${slash}PGSvc.sh</origin>
+			<destination>${installdir}${slash}${product_version}${slash}bin${slash}PGSvc.sh</destination>
+                </copyFile>
+
                 <createOSXService>
                     <abandonProcessGroup>0</abandonProcessGroup>
                     <groupname></groupname>
                     <keepAlive>0</keepAlive>
-                    <program>${installdir}/${product_version}/bin/postgres</program>
-                    <programArguments>-D ${data_dir} -p ${pg_port}</programArguments>
+                    <program>${installdir}${slash}${product_version}${slash}bin${slash}PGSvc.sh</program>
+                    <programArguments>start</programArguments>
                     <progressText>${msg(progress.start_server)}</progressText>
                     <scope>system</scope>
                     <serviceName>org.2ndQ.postgresql-${product_version}</serviceName>
                     <username>postgres</username>
                 </createOSXService>
+
                 <copyFile>
                     <destination>${installdir}/${product_version}/postgresql.bin</destination>
                     <origin>${installdir}/${product_version}/Installer_scripts/postgresql.bin.in</origin>
@@ -484,7 +510,7 @@ ${msg(summary.confirm)}
                         </compareText>
                     </ruleList>
                 </copyFile>
-                <substitute>
+		<substitute>
                     <files>${installdir}/${product_version}/postgresql.bin</files>
                     <type>exact</type>
                     <ruleList>
@@ -495,20 +521,16 @@ ${msg(summary.confirm)}
                     </ruleList>
                     <substitutionList>
                         <substitution>
-                            <pattern>pg_home</pattern>
+                            <pattern>_PGHOME_</pattern>
                             <value>${installdir}/${product_version}</value>
                         </substitution>
                         <substitution>
-                            <pattern>data_dir_path</pattern>
-                            <value>${data_dir}</value>
-                        </substitution>
-                        <substitution>
-                            <pattern>log_file</pattern>
-                            <value>${data_dir}/logfile</value>
-                        </substitution>
-                        <substitution>
-                            <pattern>pg_port</pattern>
+                            <pattern>_PGPORT_</pattern>
                             <value>${pg_port}</value>
+                        </substitution>
+                        <substitution>
+                            <pattern>_PLPACKAGE_</pattern>
+                            <value>${installdir}/pl-languages</value>
                         </substitution>
                     </substitutionList>
                 </substitute>
@@ -1102,8 +1124,8 @@ ${msg(existing.upgraded)} </explanation>
                     <abandonProcessGroup>0</abandonProcessGroup>
                     <groupname></groupname>
                     <keepAlive>0</keepAlive>
-                    <program>${installdir}/${product_version}/bin/postgres</program>
-                    <programArguments>-D ${data_dir} -p ${pg_port}</programArguments>
+                    <program>${installdir}${slash}${product_version}${slash}bin${slash}PGSvc.sh</program>
+                    <programArguments>start</programArguments>
                     <progressText>${msg(progress.start_server)}</progressText>
                     <scope>system</scope>
                     <serviceName>org.2ndQ.postgresql-${product_version}</serviceName>
@@ -1137,20 +1159,16 @@ ${msg(existing.upgraded)} </explanation>
                     </ruleList>
                     <substitutionList>
                         <substitution>
-                            <pattern>pg_home</pattern>
+                            <pattern>_PGHOME_</pattern>
                             <value>${installdir}/${product_version}</value>
                         </substitution>
                         <substitution>
-                            <pattern>data_dir_path</pattern>
-                            <value>${data_dir}</value>
-                        </substitution>
-                        <substitution>
-                            <pattern>log_file</pattern>
-                            <value>${data_dir}/logfile</value>
-                        </substitution>
-                        <substitution>
-                            <pattern>pg_port</pattern>
+                            <pattern>_PGPORT_</pattern>
                             <value>${pg_port}</value>
+                        </substitution>
+                        <substitution>
+                            <pattern>_PLPACKAGE_</pattern>
+                            <value>${installdir}/pl-languages</value>
                         </substitution>
                     </substitutionList>
                 </substitute>
