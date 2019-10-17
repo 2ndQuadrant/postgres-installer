@@ -1,45 +1,97 @@
 #!/bin/bash
-# This is used for starting up the PostgreSQL
-# server
 
-# processname: postgres
-# pidfile: postmaster.pid
-#
+PLPackage=_PLPACKAGE_
+PGHome=_PGHOME_
+PGPort=_PGPORT_
+
+PGServerController() {
+
+
+        if [[ "$1" == "start" ]]
+        then
+
+                if [[ -d $PLPackage ]]
+                then
+
+                        serverStatus=`sudo su postgres -c 'export PATH='"$PLPackage"'/Perl-5.26/bin:$PATH; export LD_LIBRARY_PATH='"$PLPackage"'/Perl-5.26/lib/CORE:$LD_LIBRARY_PATH; export PERL5LIB=/'"$PLPackage"'/Perl-5.26/lib; export PATH='"$PLPackage"'/Tcl-8.6/bin:$PATH;export LD_LIBRARY_PATH='"$PLPackage"'/Tcl-8.6/lib:$LD_LIBRARY_PATH; '"$PGHome"'/bin/pg_ctl -D '"$PGHome"'/data -o " -p '"$PGPort"'" -l /tmp/logfile '"$1"''`
+
+                        return
+                else
+                        echo "Warning: Starting server without PL Languages support ..." >> servicelog.log 2>&1
+                fi
+        fi
+
+        serverStatus=`sudo su postgres -c ''"$PGHome"'/bin/pg_ctl -D '"$PGHome"'/data -o " -p '"$PGPort"'" -l /tmp/logfile '"$1"''`
+
+
+}
+
+
 
 case "$1" in
 start)
-    # Check for postgres already running...
-    server_status=`sudo su postgres -c 'pg_home/bin/pg_ctl -D data_dir_path -o " -p pg_port" -l log_file status'`
-    if [[ $server_status == *"server is running"* ]]
-    then
-        echo "Server already running."
-    else
-        rm -f /tmp/.s.PGSQL.* > /dev/null
-        echo  "Starting postgresql service: "
-        sudo su postgres -c 'pg_home/bin/pg_ctl -D data_dir_path -w -o " -p pg_port" -l log_file start'
-        sleep 3
-        server_status=`sudo su postgres -c 'pg_home/bin/pg_ctl -D data_dir_path -o " -p pg_port" -l log_file status'`
-        if [[ $server_status == *"server is running"* ]]
+
+        PGServerController status
+
+        if [[ $serverStatus == *"server is running"* ]]
         then
-            echo ""
+                echo "Server is already running ..."
         else
-            echo "Server start failed."
+                rm -f /tmp/.s.PGSQL.* > /dev/null
+
+                echo  "Starting PostgreSQL server ..."
+
+                PGServerController start
+
+                echo "Checking if server is properly started ..."
+
+                PGServerController status
+
+                if [[ $serverStatus == *"server is running"* ]]
+                then
+                        echo "Started successfully ..."
+                else
+                        echo "Unable to start the server"
+                fi
         fi
-    fi
+
+
 ;;
+
+
 stop)
-    echo "Stopping postgresql service: "
-    sudo su postgres -c 'pg_home/bin/pg_ctl -D data_dir_path -o " -p pg_port" -l log_file stop'
-    sleep 2
-    echo
+
+        echo "Stopping PostgreSQL server ..."
+
+        PGServerController stop
+
+        if [[ $serverStatus == *"stopped"* ]]
+        then
+                echo "Successfully stopped ..."
+        else
+                echo "Unable to stop the server ..."
+        fi
+
+
 ;;
+
+
 status)
-    sudo su postgres -c 'pg_home/bin/pg_ctl -D data_dir_path -o " -p pg_port" status'
+
+        PGServerController status
+
+        echo $serverStatus
+
+
 ;;
+
+
 restart)
     $0 stop
     $0 start
 ;;
+
+
 *)
     echo "Usage: postgresql {start|stop|status|restart}"
     exit 1
