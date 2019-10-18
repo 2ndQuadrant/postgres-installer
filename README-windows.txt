@@ -44,7 +44,7 @@ Connect to PostgreSQL via psql
 Open windows command prompt
 
 . Change directory: cd /d __PGHOME__\bin
-. Connect with PostgreSQL by via psql client: psql.exe -U postgres -d postgres
+. Connect with PostgreSQL by via psql client: psql.exe -U postgres -d postgres -p __PGPORT__
 
 Type in your postgres superuser password. This should be the same as supplied during installation on Database Superuser Password screen
 Once connected, you can key in SQL queries as you like. Please refer to psql documentation for help on using psql client.
