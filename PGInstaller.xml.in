@@ -9,6 +9,7 @@
     <splashImage>${build_project_directory}/logos/2ndQSplash.png</splashImage>
     <allowLanguageSelection>1</allowLanguageSelection>
     <enableDebugger>__DEBUG__</enableDebugger>
+    <osxPlatforms>osx-intel osx-x86_64</osxPlatforms>
 
     <!-- Installer Size -->
     <width>550</width>
