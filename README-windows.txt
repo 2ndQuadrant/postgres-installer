@@ -1,7 +1,7 @@
 Welcome to Postgres Installer by 2ndQuadrant
 ============================================
 
-Postgres Installer by 2ndquadrant is a GUI based, user-friendly installer for PostgreSQL that is digitally signed and certified by 2ndQuadrant. The installer is currently available for PostgreSQL versions 9.5, 9.6, 10, 11 and 12(Beta). Postgres Installer has the ability to run in graphical, command line, or quiet installation modes for  Windows, MacOS and Linux.
+Postgres Installer by 2ndquadrant is a GUI based, user-friendly installer for PostgreSQL that is digitally signed and certified by 2ndQuadrant. The installer is currently available for PostgreSQL versions 9.5, 9.6, 10, 11 and 12. Postgres Installer has the ability to run in graphical, command line, or quiet installation modes for  Windows, macOS and Linux.
 
 
 Features
@@ -75,7 +75,7 @@ Getting started with PostGIS
 
 PostGIS is a spatial database extender for PostgreSQL object-relational database. It add support for geographic objects allowing location queries to be run in SQL.
 
-NOTE: PostGIS is not supported for PostgreSQL 12(Beta)
+NOTE: PostGIS is not supported for PostgreSQL 12 yet
 
 Some of the extensions required for PostGIS.
 
@@ -110,9 +110,7 @@ ICU stands for International Components for Unicode. It provide the ability to h
 . English
 . French
 . German
-. Urdu
 . Italian
-. Hindi
 
 And many more of course. You can run query below to see which languages are supported
 
@@ -131,8 +129,9 @@ PL/Perl, as an imperative programming language, allows more control than the rel
 Setting up Perl
 ===============
 
-. Go into 'Environment variables' and set path of Perl which is '__INSTALLDIR__\pl-languages\Perl-5.26\bin'
-. Open 'cmd' and restart the postgreSQL service
+. Open 'cmd' as an administrator
+. Go to __PGHOME__\bin
+. serverctl.vbs restart
 . Connect to 'psql'
 . Run query 'CREATE LANGUAGE plperl;'
 
@@ -146,8 +145,11 @@ PL/Tcl is a loadable procedural language for the PostgreSQL database system that
 Setting up Tcl
 ==============
 
-. Go into 'Environment variables' and set path of Tcl which is '__INSTALLDIR__\pl-languages\Tcl-8.6\bin'
-. Open 'cmd' and restart the postgreSQL service
+NOTE: If you have already restart the service via "serverctl.vbs" then please skip first 3 steps.
+
+. Open 'cmd' as an administrator
+. Go to __PGHOME__\bin
+. serverctl.vbs restart
 . Connect to 'psql'
 . Run query 'CREATE LANGUAGE pltcl;'
 
