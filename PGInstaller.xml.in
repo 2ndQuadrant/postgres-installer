@@ -1684,7 +1684,7 @@ ${msg(existing.upgraded)} </explanation>
                             <value>${installdir}</value>
                         </substitution>
                     </substitutionList>
-                </substitutea
+                </substitute>
                 <substitute>
                     <files>${installdir}${slash}${product_version}${slash}bin${slash}serverctl.vbs</files>
                     <type>exact</type>
