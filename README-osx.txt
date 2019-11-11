@@ -1,7 +1,7 @@
 Welcome to Postgres Installer by 2ndQuadrant
 ============================================
 
-Postgres Installer by 2ndquadrant is a GUI based, user-friendly installer for PostgreSQL that is digitally signed and certified by 2ndQuadrant. The installer is currently available for PostgreSQL versions 9.5, 9.6, 10, 11 and 12(Beta). Postgres Installer has the ability to run in graphical, command line, or quiet installation modes for  Windows, MacOS and Linux.
+Postgres Installer by 2ndquadrant is a GUI based, user-friendly installer for PostgreSQL that is digitally signed and certified by 2ndQuadrant. The installer is currently available for PostgreSQL versions 9.5, 9.6, 10, 11 and 12. Postgres Installer has the ability to run in graphical, command line, or quiet installation modes for  Windows, macOS and Linux.
 
 
 Features
@@ -19,6 +19,7 @@ Postgres Installer comes with features listed below. In addition to these, many 
 . ICU
 . Perl
 . Tcl
+. LLVM
 
 For more details please visit.
 https://www.2ndquadrant.com/en/resources/postgresql-installer-2ndquadrant/
@@ -73,7 +74,7 @@ Getting started with PostGIS
 
 PostGIS is a spatial database extender for PostgreSQL object-relational database. It add support for geographic objects allowing location queries to be run in SQL.
 
-NOTE: PostGIS is not supported for PostgreSQL 12(Beta)
+NOTE: PostGIS is not supported for PostgreSQL 12 yet
 
 Some of the extensions required for PostGIS.
 
@@ -105,9 +106,7 @@ ICU stands for International Components for Unicode. It provide the ability to h
 . English
 . French
 . German
-. Urdu
 . Italian
-. Hindi
 
 And many more of course. You can run query below to see which languages are supported
 
@@ -125,16 +124,7 @@ PL/Perl, as an imperative programming language, allows more control than the rel
 
 Setting up Perl
 ===============
-
 . Open terminal
-. Shift to postgres user. su - postgres
-
-. Set following paths.
-  export PATH=__INSTALLDIR__/pl-languages/Perl-5.26/bin:$PATH
-  export LD_LIBRARY_PATH=__INSTALLDIR__/pl-languages/Perl-5.26/lib/CORE:$LD_LIBRARY_PATH
-  export PERL5LIB=__INSTALLDIR__/pl-languages/Perl-5.26/lib
-
-. Restart the postgreSQL service using pg_ctl restart
 . Connect to 'psql'
 . Run query 'CREATE LANGUAGE plperl;'
 
@@ -148,14 +138,21 @@ PL/Tcl is a loadable procedural language for the PostgreSQL database system that
 Setting up Tcl
 ==============
 . Open terminal
-. Shift to postgres user. su - postgres
-. Set following paths.
-  export PATH=__INSTALLDIR__/pl-languages/Tcl-8.6/bin:$PATH
-  export LD_LIBRARY_PATH=__INSTALLDIR__/pl-languages/Tcl-8.6/lib:$LD_LIBRARY_PATH
-
-. Restart the postgreSQL service using pg_ctl restart
 . Connect to 'psql'
 . Run query 'CREATE LANGUAGE pltcl;'
+
+
+LLVM
+====
+Just-in-Time (JIT) compilation is the process of turning some form of interpreted program evaluation into a native program, LLVM has support for optimizing generated code. Some of the optimizations are cheap enough to be performed whenever JIT is used, while others are only beneficial for longer-running queries. long running queries that are CPU bound will benefit from JIT compilation
+
+NOTE: LLVM is only avialable in PostgreSQL-11 and above
+
+. create table t1 (id serial);
+. insert INTO t1 (id) select * from generate_series(1, 10000000);
+. set jit = 'on'; set jit_above_cost = 10; set jit_inline_above_cost = 10; set jit_optimize_above_cost = 10;
+. explain analyze select count(*) from t1; -- See JIT section for results
+. explain (analyze, verbose, buffers) select count(*) from t1; -- See JIT section for results
 
 
 Bug Reports and Feedback
