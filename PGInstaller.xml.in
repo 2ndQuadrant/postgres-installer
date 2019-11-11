@@ -429,6 +429,23 @@ ${msg(summary.confirm)}
                     <programArguments>-D "${data_dir}" -U postgres --pwfile ${systemTempDir}/.initdbpwd -A md5</programArguments>
                     <progressText>${msg(progress.initdb)}</progressText>
                     <runAs>postgres</runAs>
+                    <compareText>
+                            <logic>equals</logic>
+                            <negate>1</negate>
+                            <text>${platform_name}</text>
+                            <value>windows</value>
+                    </compareText>
+                </runProgram>
+                <runProgram>
+                    <explanation>Initializing PostgreSQL Server</explanation>
+                    <program>${installdir}/${product_version}/bin/initdb</program>
+                    <programArguments>-D "${data_dir}" -U postgres --pwfile ${systemTempDir}/.initdbpwd -A md5</programArguments>
+                    <progressText>${msg(progress.initdb)}</progressText>
+                    <compareText>
+                            <logic>equals</logic>
+                            <text>${platform_name}</text>
+                            <value>windows</value>
+                    </compareText>
                 </runProgram>
                 <deleteFile>
                     <matchHiddenFiles>1</matchHiddenFiles>
