@@ -501,6 +501,9 @@ ${msg(summary.confirm)}
 		<copyFile>
 			<origin>${installdir}${slash}${product_version}${slash}Installer_scripts${slash}PGSvc.sh</origin>
 			<destination>${installdir}${slash}${product_version}${slash}bin${slash}PGSvc.sh</destination>
+                        <ruleList>
+                            <platformTest negate="1"  type="windows"/>
+                        </ruleList>
                 </copyFile>
 
                 <createOSXService>
