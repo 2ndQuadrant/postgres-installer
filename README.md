@@ -1,19 +1,19 @@
 # Copyright
-This Postgres Installer code is copyright under GNU General Public License v3.0
+This Postgres Installer code is copyright under GNU General Public License v3.0.
 For more copyright details please refer to https://github.com/2ndQuadrant/postgres-installer/blob/master/LICENSE
 
 # Overview
-Postgres Installer is a multi-platform graphical and text mode one click installer. Its code is written in bitrock and tested with InstallBuilder16, You can generate installers for all 3 platforms i,e
+Postgres Installer is a multi-platform graphical and text mode one click installer. Its code is written in bitrock and tested with InstallBuilder version 19. You can generate installers for following 3 platforms i.e.
 - Windows
 - MacOS
 - Linux
 
-To know more about Postgres Installer and its features please refer to postgres Installer page in our website:
+To know more about Postgres Installer and its features please refer to postgres Installer page on our website:
 https://www.2ndquadrant.com/en/resources/postgresql-installer-2ndquadrant 
 
 # Usage
-This section will walk you through to generate a new installer please follow the steps mentioned below
-In this example we are going to generate an installer for Linux(PostgreSQL 10.5)
+This section gives a simple walk through of the steps to generate a new installer.
+In this example we are going to generate an installer for Linux using PostgreSQL version 10.5
 Note: please make sure that you change/modify commands according to your needs 
 - Download required PostgreSQL source code from	https://www.postgresql.org/ftp/source/
     - wget https://ftp.postgresql.org/pub/source/v10.5/postgresql-10.5.tar.gz
@@ -24,7 +24,7 @@ Note: please make sure that you change/modify commands according to your needs
     - git clone https://github.com/2ndQuadrant/postgres-installer.git
 - Create new directory(Builds) on root of the Postgres Installer code
     - mkdir Builds
-- Create new sub-directories inside Builds directory(this will reflect platforms for which you are going to generate a new installer. Folder names should be the same as bellow) i,e
+- Create new sub-directories inside Builds directory(this will reflect platforms for which you are going to generate a new installer. Folder names should be the same as bellow) i.e.
     - Windows
     - Linux
     - OSX
