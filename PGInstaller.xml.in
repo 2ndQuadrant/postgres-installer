@@ -404,29 +404,128 @@ ${msg(summary.confirm)}
                                 </compareText>
                         </conditionRuleList>
                 </if>
-                <deleteFile>
-                    <matchHiddenFiles>1</matchHiddenFiles>
-                    <path>${systemTempDir}/.initdbpwd</path>
-                </deleteFile>
+
+                <!-- Unix - generating random file -->
+                <actionGroup>
+                    <actionList>
+                        <setInstallerVariable name="iteration" value="0"/>
+                        <while>
+                            <actionList>
+                                <generateRandomValue length="20" variable="random_number"/>
+                                <runProgram>
+                                    <program>sh</program>
+                                    <programArguments>-c &lt;&lt;EOF '
+					        umask 0077
+						mkdir "${installdir}/Postgres_installer_${random_number}"
+                                                if [ $? -ne 0 ];
+                                                then
+                                                    exit 100
+                                                fi
+                                                '
+EOF
+                                    </programArguments>
+                                </runProgram>
+                                <break>
+                                    <ruleList>
+                                        <compareText logic="equals" text="0" value="${program_exit_code}"/>
+                                    </ruleList>
+                                </break>
+                                <actionGroup>
+                                    <actionList>
+                                        <throwError text="can not create temp dir" abortOnError="1">
+                                            <ruleList>
+                                                <compareValues value1="${iteration}" logic="equals" value2="9"/>
+                                            </ruleList>
+                                        </throwError>
+                                    </actionList>
+                                </actionGroup>
+                                <mathExpression text="${iteration}+1" variable="iteration"/>
+                           </actionList>
+                           <conditionRuleList>
+                                <compareValues value1="${iteration}" logic="less" value2="10"/>
+                           </conditionRuleList>
+                        </while>
+                        <setInstallerVariable name="random_number" value="${random_number}"/>
+                    </actionList>
+                    <ruleList>
+                        <compareText logic="does_not_equal" text="${platform_name}" value="windows"/>
+                    </ruleList>
+                </actionGroup>
+
+                <!-- Windows generating ranodm file -->
+                <actionGroup>
+                    <actionList>
+                        <globalVariables names="random_number"/>
+                        <generateRandomValue length="20" variable="random_number"/>
+                        <createDirectory path="${installdir}${slash}Postgres_installer_${random_number}"/>
+                        <runProgram>
+                            <program>icacls</program>
+                            <programArguments>"${installdir}${slash}Postgres_installer_${random_number}" /inheritance:r</programArguments>
+                            <showMessageOnError>1</showMessageOnError>
+                            <progressText></progressText>
+                        </runProgram>
+                        <runProgram>
+                            <program>icacls</program>
+                            <programArguments>"${installdir}${slash}Postgres_installer_${random_number}" /T /Q /grant "${env(USERDOMAIN)}\${system_username}:(OI)(CI)F"</programArguments>
+                            <showMessageOnError>1</showMessageOnError>
+                        </runProgram>
+                    </actionList>
+                    <ruleList>
+                        <compareText logic="equals" text="${platform_name}" value="windows"/>
+                    </ruleList>
+                </actionGroup>
+
+                <!-- Unix - setting permissions on random dir and file -->
+                <actionGroup>
+		    <actionList>
+		        <runProgram>
+                            <program>touch</program>
+                            <programArguments>${installdir}${slash}Postgres_installer_${random_number}${slash}.initdbpwd</programArguments>
+                        </runProgram>
+
+                        <runProgram>
+                            <program>chmod</program>
+                            <programArguments>0600 ${installdir}${slash}Postgres_installer_${random_number}${slash}.initdbpwd</programArguments>
+                        </runProgram>
+
+                        <runProgram>
+                            <program>chown</program>
+                            <programArguments>postgres:daemon ${installdir}${slash}Postgres_installer_${random_number}</programArguments>
+                        </runProgram>
+
+                        <runProgram>
+                            <program>chown</program>
+                            <programArguments>postgres:daemon ${installdir}${slash}Postgres_installer_${random_number}${slash}.initdbpwd</programArguments>
+                        </runProgram>
+		    </actionList>
+		    <ruleList>
+                        <platformTest>
+                            <negate>1</negate>
+                            <type>windows</type>
+                        </platformTest>
+	            </ruleList>
+	        </actionGroup>
+
                 <addTextToFile>
-                    <file>${systemTempDir}/.initdbpwd</file>
+                    <file>${installdir}${slash}Postgres_installer_${random_number}${slash}.initdbpwd</file>
                     <text>${superuser_password}</text>
                 </addTextToFile>
+
                 <changeOSXAttributes>
                     <creator></creator>
-                    <files>${systemTempDir}/.initdbpwd</files>
+                    <files>${installdir}${slash}Postgres_installer_${random_number}${slash}.initdbpwd</files>
                     <hidden>1</hidden>
                     <type>TEXT</type>
                 </changeOSXAttributes>
                 <changeWindowsAttributes>
-                    <files>${systemTempDir}/.initdbpwd</files>
+                    <files>${installdir}${slash}Postgres_installer_${random_number}${slash}.initdbpwd</files>
                     <hidden>1</hidden>
                     <readOnly>1</readOnly>
                 </changeWindowsAttributes>
                 <runProgram>
                     <explanation>Initializing PostgreSQL Server</explanation>
                     <program>${installdir}/${product_version}/bin/initdb</program>
-                    <programArguments>-D "${data_dir}" -U postgres --pwfile ${systemTempDir}/.initdbpwd -A md5</programArguments>
+                    <programArguments>-D "${data_dir}" -U postgres --pwfile "${installdir}${slash}Postgres_installer_${random_number}${slash}.initdbpwd" -A md5</programArguments>
                     <progressText>${msg(progress.initdb)}</progressText>
                     <runAs>postgres</runAs>
                     <ruleList>
@@ -441,7 +540,7 @@ ${msg(summary.confirm)}
                 <runProgram>
                     <explanation>Initializing PostgreSQL Server</explanation>
                     <program>${installdir}/${product_version}/bin/initdb</program>
-                    <programArguments>-D "${data_dir}" -U postgres --pwfile ${systemTempDir}/.initdbpwd -A md5</programArguments>
+                    <programArguments>-D "${data_dir}" -U postgres --pwfile "${installdir}${slash}Postgres_installer_${random_number}${slash}.initdbpwd" -A md5</programArguments>
                     <progressText>${msg(progress.initdb)}</progressText>
                     <ruleList>
                         <compareText>
@@ -451,10 +550,12 @@ ${msg(summary.confirm)}
                         </compareText>
                     </ruleList>
                 </runProgram>
+
                 <deleteFile>
                     <matchHiddenFiles>1</matchHiddenFiles>
-                    <path>${systemTempDir}/.initdbpwd</path>
+                    <path>${installdir}${slash}Postgres_installer_${random_number}</path>
                 </deleteFile>
+
                 <runProgram>
                     <abortOnError>0</abortOnError>
                     <program>${installdir}\${product_version}\bin\pg_ctl</program>
