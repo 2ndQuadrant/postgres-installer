@@ -525,7 +525,7 @@ EOF
                 <runProgram>
                     <explanation>Initializing PostgreSQL Server</explanation>
                     <program>${installdir}/${product_version}/bin/initdb</program>
-                    <programArguments>-D "${data_dir}" -U postgres --pwfile "${installdir}${slash}Postgres_installer_${random_number}${slash}.initdbpwd" -A md5</programArguments>
+                    <programArguments>-D "${data_dir}" -U postgres --pwfile "${installdir}${slash}Postgres_installer_${random_number}${slash}.initdbpwd" --encoding=utf8 -A md5</programArguments>
                     <progressText>${msg(progress.initdb)}</progressText>
                     <runAs>postgres</runAs>
                     <ruleList>
@@ -540,7 +540,7 @@ EOF
                 <runProgram>
                     <explanation>Initializing PostgreSQL Server</explanation>
                     <program>${installdir}/${product_version}/bin/initdb</program>
-                    <programArguments>-D "${data_dir}" -U postgres --pwfile "${installdir}${slash}Postgres_installer_${random_number}${slash}.initdbpwd" -A md5</programArguments>
+                    <programArguments>-D "${data_dir}" -U postgres --pwfile "${installdir}${slash}Postgres_installer_${random_number}${slash}.initdbpwd" --encoding=UTF-8 -A md5</programArguments>
                     <progressText>${msg(progress.initdb)}</progressText>
                     <ruleList>
                         <compareText>
