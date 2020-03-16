@@ -154,6 +154,17 @@ NOTE: If you have already restart the service via "serverctl.vbs" then please sk
 . Run query 'CREATE LANGUAGE pltcl;'
 
 
+Want to learn more about PostgreSQL?
+====================================
+
+The Postgres Learning Center from 2ndQuadrant is place to connect, gather ideas, and enhance knowledge about open source PostgreSQL.
+
+Explore interactive webinars, hands-on training and courses, insightful videos, technical whitepapers, and best-selling PostgreSQL books.
+
+Please use the link below to access PostgreSQL Learning Center
+https://www.2ndquadrant.com/en/postgres-learning-center/
+
+
 Bug Reports and Feedback
 ========================
 For bug reports and  feedback, please contact via pginstaller@2ndquadrant.com or use our contact form on our Postgres Installer page:
