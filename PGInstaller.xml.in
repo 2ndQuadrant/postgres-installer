@@ -88,6 +88,27 @@
                 </folder>
             </folderList>
             <parameterList>
+
+                <!-- This screen will appear after the installation is done and it will have information about Postgres Learning Center and a link to open PLC in the browser -->
+                <parameterGroup>
+                        <name>postInstallationPage</name>
+                        <title>${msg(PLC.title)}</title>
+                        <explanation>${msg(PLC.description)}</explanation>
+                        <insertAfter>installation</insertAfter>
+                        <parameterList>
+                                <linkParameter>
+                                        <name>openPLC</name>
+                                        <description>Open Postgres Learning Center</description>
+                                        <clickedActionList>
+                                                <launchBrowser>
+                                                        <url>https://www.2ndquadrant.com/en/postgres-learning-center/</url>
+                                                </launchBrowser>
+                                        </clickedActionList>
+                                </linkParameter>
+                                <!-- Add more info here if we need -->
+                        </parameterList>
+                </parameterGroup>
+
                 <directoryParameter>
                     <name>data_dir</name>
                     <title>${msg(data_dir.title)}</title>
