@@ -139,6 +139,15 @@
                         <setInstallerVariable>
                             <name>next_page</name>
                             <value>pg_password</value>
+
+                            <!-- Make sure we only show pg_password screen if platform is not Windows -->
+			    <ruleList>
+                                <platformTest>
+                                    <negate>1</negate>
+                                    <type>windows</type>
+                                </platformTest>
+                            </ruleList>
+
                         </setInstallerVariable>
                         <setInstallerVariable>
                             <name>back_page</name>
@@ -215,12 +224,42 @@
                         <setInstallerVariable>
                             <name>back_page</name>
                             <value>pg_password</value>
+
+			    <!-- Make sure we only show pg_password screen if platform is not Windows -->
+                            <ruleList>
+                                <platformTest>
+                                    <negate>1</negate>
+                                    <type>windows</type>
+                                </platformTest>
+                            </ruleList>
+
                         </setInstallerVariable>
                     </postShowPageActionList>
                     <preShowPageActionList>
+
+			<setInstallerVariable>
+                            <name>back_page</name>
+                            <value>pg_port</value>
+                            <!-- While running installer on Windows If user press back button on superuser_password screen then pg_port screen should appear -->
+                            <ruleList>
+                                <platformTest>
+                                    <type>windows</type>
+                                </platformTest>
+                            </ruleList>
+                        </setInstallerVariable>
+
                         <setInstallerVariable>
                             <name>back_page</name>
                             <value>pg_password</value>
+
+			    <!-- Make sure we only display pg_password screen if platform is not Windows -->
+                            <ruleList>
+                                <platformTest>
+                                    <negate>1</negate>
+                                    <type>windows</type>
+                                </platformTest>
+                            </ruleList>
+
                         </setInstallerVariable>
                     </preShowPageActionList>
                 </passwordParameter>
