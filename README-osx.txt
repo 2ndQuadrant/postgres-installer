@@ -163,7 +163,7 @@ The Postgres Learning Center from 2ndQuadrant is place to connect, gather ideas,
 Explore interactive webinars, hands-on training and courses, insightful videos, technical whitepapers, and best-selling PostgreSQL books.
 
 Please use the link below to access PostgreSQL Learning Center
-https://www.2ndquadrant.com/en/postgres-learning-center/
+https://www.2ndquadrant.com/en/postgres-learning-center/?utm_campaign=Postgres%20Learning%20Center&utm_source=installer&utm_medium=readme
 
 
 Bug Reports and Feedback
