@@ -54,3 +54,6 @@ error.runtime_installation=Erreur inconnue lors de l'installation des bibliothè
 
 description.omniDB=OmniDB est une application open source conçue pour accéder à et gérer de nombreux Systèmes de Gestion de Bases de Données, comme PostgreSQL, Oracle et MySQL. OmniDB peut être utilisé en tant que client lourd ou via le navigateur, combinant la flexibilité requise pour des moyens d'accès variés avec une conception orientée sur la sécurité.
 description.pl-languages=Le pack PL-language de 2ndQuadrant inclut le support de (pl/Perl, pl/Tcl). Il permet à l'utilisateur d'écrire des fonctions dans les langages mentionnés.
+
+PLC.title=Explore Postgres Learning Center
+PLC.description=Browse blogs, webinars, whitepapers, training courses, case studies, books and more with 2ndQuadrant's Postgres Learning Center.
