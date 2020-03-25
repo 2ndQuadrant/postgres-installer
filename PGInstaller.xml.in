@@ -100,8 +100,8 @@
                                         <name>openPLC</name>
                                         <description>Open Postgres Learning Center</description>
                                         <clickedActionList>
-                                                <launchBrowser>
-                                                        <url>https://www.2ndquadrant.com/en/postgres-learning-center/?utm_campaign=Postgres%20Learning%20Center&utm_source=installer&utm_medium=plcscreen</url>
+                                                <launchBrowser><![CDATA[
+                                                        <url>https://www.2ndquadrant.com/en/postgres-learning-center/?utm_campaign=Postgres%20Learning%20Center&utm_source=installer&utm_medium=plcscreen</url>]]>
                                                 </launchBrowser>
                                         </clickedActionList>
                                 </linkParameter>
