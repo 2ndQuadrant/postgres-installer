@@ -1583,6 +1583,13 @@ ${msg(existing.upgraded)} </explanation>
                 </setInstallerVariable>
             </postInstallationActionList>
             <readyToInstallActionList>
+
+                <!-- Renaming README - this is because if user run latest version of installer on any older version then we need to upgrade README manually -->
+                <renameFile>
+                    <origin>${installdir}/${product_version}/README-${platform_name}.txt</origin>
+                    <destination>${installdir}/${product_version}/README-${platform_name}-old.txt</destination>
+                </renameFile>
+
                 <actionGroup>
                     <progressText>Remove OSX Service</progressText>
                     <actionList>
@@ -2293,6 +2300,12 @@ ${msg(existing.upgraded)} </explanation>
         </actionGroup>
     </preInstallationActionList>
     <postInstallationActionList>
+
+        <!-- Removing old README -->
+        <deleteFile>
+            <path>${installdir}/${product_version}/README-${platform_name}-old.txt</path>
+        </deleteFile>
+
         <deleteFile>
             <path>${installdir}/${product_version}/Installer_scripts</path>
             <progressText>Removing temp files</progressText>
