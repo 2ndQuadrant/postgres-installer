@@ -1240,6 +1240,27 @@ EOF
                 </folder>
             </folderList>
             <parameterList>
+
+                <!-- Adding PLC screen in upgrade mode -->
+                <parameterGroup>
+                        <name>postInstallationPageUpgrade</name>
+                        <title>${msg(PLC.title)}</title>
+                        <explanation>${msg(PLC.description)}</explanation>
+                        <insertAfter>installation</insertAfter>
+                        <parameterList>
+                                <linkParameter>
+                                        <name>openPLCInUpgrade</name>
+                                        <description>Open Postgres Learning Center</description>
+                                        <clickedActionList>
+                                                <launchBrowser>
+                                                        <url>https://www.2ndquadrant.com/en/postgres-learning-center/?utm_campaign=Postgres%20Learning%20Center&amp;utm_source=installer&amp;utm_medium=plcscreen</url>
+                                                </launchBrowser>
+                                        </clickedActionList>
+                                </linkParameter>
+                                <!-- Add more info here if we need -->
+                        </parameterList>
+                </parameterGroup>
+
                 <labelParameter>
                     <name>installation_detected</name>
                     <title>${msg(existing.title)}</title>
