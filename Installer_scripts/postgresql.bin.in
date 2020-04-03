@@ -13,19 +13,33 @@ PGServerController() {
                 if [[ -d $PLPackage ]]
                 then
 
-                        serverStatus=`sudo su postgres -c 'export PATH='"$PLPackage"'/Perl-5.26/bin:$PATH; export LD_LIBRARY_PATH='"$PLPackage"'/Perl-5.26/lib/CORE:$LD_LIBRARY_PATH; export PERL5LIB=/'"$PLPackage"'/Perl-5.26/lib; export PATH='"$PLPackage"'/Tcl-8.6/bin:$PATH;export LD_LIBRARY_PATH='"$PLPackage"'/Tcl-8.6/lib:$LD_LIBRARY_PATH; '"$PGHome"'/bin/pg_ctl -D '"$PGHome"'/data -o " -p '"$PGPort"'" -l /tmp/logfile '"$1"''`
+			if [ -f "/etc/redhat-release" ] || [ -f "/etc/SuSe-release" ]; then
 
-                        return
+				serverStatus=`export PATH=$PLPackage/Perl-5.26/bin:$PATH; export LD_LIBRARY_PATH=$PLPackage/Perl-5.26/lib/CORE:$LD_LIBRARY_PATH; export PERL5LIB=$PLPackage/Perl-5.26/lib; export PATH=$PLPackage/Tcl-8.6/bin:$PATH; export LD_LIBRARY_PATH=$PLPackage/Tcl-8.6/lib:$LD_LIBRARY_PATH; $PGHome/bin/pg_ctl -D $PGHome/data -o " -p $PGPort" -l /tmp/logfile $1`
+
+				return
+
+			else
+				serverStatus=`sudo su postgres -c 'export PATH='"$PLPackage"'/Perl-5.26/bin:$PATH; export LD_LIBRARY_PATH='"$PLPackage"'/Perl-5.26/lib/CORE:$LD_LIBRARY_PATH; export PERL5LIB=/'"$PLPackage"'/Perl-5.26/lib; export PATH='"$PLPackage"'/Tcl-8.6/bin:$PATH;export LD_LIBRARY_PATH='"$PLPackage"'/Tcl-8.6/lib:$LD_LIBRARY_PATH; '"$PGHome"'/bin/pg_ctl -D '"$PGHome"'/data -o " -p '"$PGPort"'" -l /tmp/logfile '"$1"''`
+
+				return
+
+			fi
+
                 else
                         echo "Warning: Starting server without PL Languages support ..." >> servicelog.log 2>&1
                 fi
-        fi
+	fi
 
-        serverStatus=`sudo su postgres -c ''"$PGHome"'/bin/pg_ctl -D '"$PGHome"'/data -o " -p '"$PGPort"'" -l /tmp/logfile '"$1"''`
+	if [ -f "/etc/redhat-release" ] || [ -f "/etc/SuSe-release" ]; then
 
+		serverStatus=`$PGHome/bin/pg_ctl -D $PGHome/data -o " -p $PGPort" -l /tmp/logfile $1`
+	else
+	        serverStatus=`sudo su postgres -c ''"$PGHome"'/bin/pg_ctl -D '"$PGHome"'/data -o " -p '"$PGPort"'" -l /tmp/logfile '"$1"''`
+
+	fi
 
 }
-
 
 
 case "$1" in
@@ -36,6 +50,7 @@ start)
         if [[ $serverStatus == *"server is running"* ]]
         then
                 echo "Server is already running ..."
+		exit 0
         else
                 rm -f /tmp/.s.PGSQL.* > /dev/null
 
@@ -50,11 +65,12 @@ start)
                 if [[ $serverStatus == *"server is running"* ]]
                 then
                         echo "Started successfully ..."
+			exit 0
                 else
                         echo "Unable to start the server"
+			exit 1
                 fi
         fi
-
 
 ;;
 
@@ -68,10 +84,11 @@ stop)
         if [[ $serverStatus == *"stopped"* ]]
         then
                 echo "Successfully stopped ..."
+		exit 0
         else
                 echo "Unable to stop the server ..."
+		exit 1
         fi
-
 
 ;;
 
@@ -82,6 +99,7 @@ status)
 
         echo $serverStatus
 
+	exit 0
 
 ;;
 
@@ -89,6 +107,7 @@ status)
 restart)
     $0 stop
     $0 start
+
 ;;
 
 
