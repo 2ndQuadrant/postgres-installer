@@ -684,6 +684,21 @@ EOF
                     <origin>${installdir}/${product_version}/Installer_scripts/postgresql.bin.in</origin>
                     <ruleEvaluationLogic>or</ruleEvaluationLogic>
                     <ruleList>
+			<compareText>
+                            <logic>equals</logic>
+                            <text>${linux_distribution}</text>
+                            <value>redhat</value>
+                        </compareText>
+                        <compareText>
+                            <logic>equals</logic>
+                            <text>${linux_distribution}</text>
+                            <value>suse</value>
+                        </compareText>
+                        <compareText>
+                            <logic>equals</logic>
+                            <text>${linux_distribution}</text>
+                            <value>fedora</value>
+                        </compareText>
                         <compareText>
                             <logic>equals</logic>
                             <text>${linux_distribution}</text>
@@ -823,8 +838,8 @@ EOF
                     </ruleList>
                 </runProgram>
                 <runProgram>
-                    <program>systemctl</program>
-                    <programArguments>start postgresql-2ndQ-${product_version}.service</programArguments>
+                    <program>service</program>
+                    <programArguments>postgresql-2ndQ-${product_version} start</programArguments>
                     <ruleEvaluationLogic>or</ruleEvaluationLogic>
                     <ruleList>
                         <compareText>
@@ -1343,6 +1358,21 @@ ${msg(existing.upgraded)} </explanation>
                     <origin>${installdir}/${product_version}/Installer_scripts/postgresql.bin.in</origin>
                     <ruleEvaluationLogic>or</ruleEvaluationLogic>
                     <ruleList>
+			<compareText>
+                            <logic>equals</logic>
+                            <text>${linux_distribution}</text>
+                            <value>redhat</value>
+                        </compareText>
+			<compareText>
+                            <logic>equals</logic>
+                            <text>${linux_distribution}</text>
+                            <value>suse</value>
+                        </compareText>
+			<compareText>
+                            <logic>equals</logic>
+                            <text>${linux_distribution}</text>
+                            <value>fedora</value>
+                        </compareText>
                         <compareText>
                             <logic>equals</logic>
                             <text>${linux_distribution}</text>
@@ -1482,8 +1512,8 @@ ${msg(existing.upgraded)} </explanation>
                     </ruleList>
                 </runProgram>
                 <runProgram>
-                    <program>systemctl</program>
-                    <programArguments>start postgresql-2ndQ-${product_version}.service</programArguments>
+                    <program>service</program>
+                    <programArguments>postgresql-2ndQ-${product_version} start</programArguments>
                     <ruleEvaluationLogic>or</ruleEvaluationLogic>
                     <ruleList>
                         <compareText>

@@ -11,9 +11,9 @@ User=postgres
 Environment=PGDATA=data_dir
 PIDFILE=data_dir/postmaster.pid
 
-ExecStart=pg_path/bin/pg_ctl -w start -D "data_dir" -o "-p pg_port" -l "data_dir/logfile"
-ExecStop=pg_path/bin/pg_ctl stop -m fast -w -D "data_dir"
-ExecReload=pg_path/bin/pg_ctl reload -D "data_dir"
+ExecStart=pg_path/postgresql.bin start
+ExecStop=pg_path/postgresql.bin stop
+ExecReload=pg_path/postgresql.bin reload
 
 [Install]
 WantedBy=multi-user.target
