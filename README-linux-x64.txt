@@ -62,7 +62,7 @@ Usage instructions
 
 Open terminal and follow these steps
 
-. Change directory: cd __OMNIHOME__
+. Change directory: cd __OMNIHOME__/omnidb-server
 . Start OmniDB server: ./omnidb-server
 . Port number will be shown inside the terminal once server is started
 . Open your favorite browser and type in following URL to connect with OmniDB: http://localhost:Port_Number --default OmniDB port is 8000
