@@ -412,27 +412,27 @@ ${msg(summary.confirm)}
 			<progressText>Setting Windows ACL permissions on data dir</progressText>
 			<actionList>
 				<runProgram>
-					<program>icacls</program>
+					<program>C:\Windows\System32\icacls.exe</program>
 					<programArguments>"${data_dir}" /inheritance:r</programArguments>
 				</runProgram>
 				<runProgram>
-					<program>icacls</program>
+					<program>C:\Windows\System32\icacls.exe</program>
 					<programArguments>"${data_dir}" /T /Q /grant "${system_username}:(OI)(CI)F"</programArguments>
 				</runProgram>
 				<runProgram>
-					<program>icacls</program>
+					<program>C:\Windows\System32\icacls.exe</program>
 					<programArguments>"${data_dir}" /T /Q /grant "*S-1-5-20:(OI)(CI)F"</programArguments>
 				</runProgram>
 				<runProgram>
-					<program>icacls</program>
+					<program>C:\Windows\System32\icacls.exe</program>
 					<programArguments>"${data_dir}" /T /Q /grant "*S-1-3-0:(OI)(CI)F"</programArguments>
 				</runProgram>
 				<runProgram>
-					<program>icacls</program>
+					<program>C:\Windows\System32\icacls.exe</program>
 					<programArguments>"${data_dir}" /T /Q /grant "*S-1-5-18:(OI)(CI)F"</programArguments>
 				</runProgram>
 				<runProgram>
-					<program>icacls</program>
+					<program>C:\Windows\System32\icacls.exe</program>
 					<programArguments>"${data_dir}" /T /Q /grant "*S-1-5-32-544:(OI)(CI)F"</programArguments>
 				</runProgram>
 			</actionList>
@@ -519,13 +519,13 @@ EOF
                         <generateRandomValue length="20" variable="random_number"/>
                         <createDirectory path="${installdir}${slash}Postgres_installer_${random_number}"/>
                         <runProgram>
-                            <program>icacls</program>
+                            <program>C:\Windows\System32\icacls.exe</program>
                             <programArguments>"${installdir}${slash}Postgres_installer_${random_number}" /inheritance:r</programArguments>
                             <showMessageOnError>1</showMessageOnError>
                             <progressText></progressText>
                         </runProgram>
                         <runProgram>
-                            <program>icacls</program>
+                            <program>C:\Windows\System32\icacls.exe</program>
                             <programArguments>"${installdir}${slash}Postgres_installer_${random_number}" /T /Q /grant "${env(USERDOMAIN)}\${system_username}:(OI)(CI)F"</programArguments>
                             <showMessageOnError>1</showMessageOnError>
                         </runProgram>
@@ -1678,35 +1678,35 @@ ${msg(existing.upgraded)} </explanation>
 				<progressText>Setting Windows ACL permissions on data dir</progressText>
                                 <actionList>
                                         <runProgram>
-                                                <program>icacls</program>
+                                                <program>C:\Windows\System32\icacls.exe</program>
                                                 <programArguments>"${data_dir}" /inheritance:r</programArguments>
                                         </runProgram>
                                         <runProgram>
-                                                <program>icacls</program>
+                                                <program>C:\Windows\System32\icacls.exe</program>
                                                 <programArguments>"${data_dir}"  /remove:g Users</programArguments>
                                         </runProgram>
                                         <runProgram>
-                                                <program>icacls</program>
+                                                <program>C:\Windows\System32\icacls.exe</program>
                                                 <programArguments>"${data_dir}"  /remove:g Everyone</programArguments>
                                         </runProgram>
                                         <runProgram>
-                                                <program>icacls</program>
+                                                <program>C:\Windows\System32\icacls.exe</program>
                                                 <programArguments>"${data_dir}" /T /Q /grant "${system_username}:(OI)(CI)F"</programArguments>
                                         </runProgram>
                                         <runProgram>
-                                                <program>icacls</program>
+                                                <program>C:\Windows\System32\icacls.exe</program>
                                                 <programArguments>"${data_dir}" /T /Q /grant "*S-1-5-20:(OI)(CI)F"</programArguments>
                                         </runProgram>
                                         <runProgram>
-                                                <program>icacls</program>
+                                                <program>C:\Windows\System32\icacls.exe</program>
                                                 <programArguments>"${data_dir}" /T /Q /grant "*S-1-3-0:(OI)(CI)F"</programArguments>
                                         </runProgram>
                                         <runProgram>
-                                                <program>icacls</program>
+                                                <program>C:\Windows\System32\icacls.exe</program>
                                                 <programArguments>"${data_dir}" /T /Q /grant "*S-1-5-18:(OI)(CI)F"</programArguments>
                                         </runProgram>
                                         <runProgram>
-                                                <program>icacls</program>
+                                                <program>C:\Windows\System32\icacls.exe</program>
                                                 <programArguments>"${data_dir}" /T /Q /grant "*S-1-5-32-544:(OI)(CI)F"</programArguments>
                                         </runProgram>
                                 </actionList>
