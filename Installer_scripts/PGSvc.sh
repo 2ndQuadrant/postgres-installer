@@ -14,9 +14,9 @@ PGServerController() {
                 then
 
 			# Export PATHS for PLs
-			export PATH=$PLPackage/Perl-5.26/bin;$PLPackage/Tcl-8.6/bin:$PATH
-			export LD_LIBRARY_PATH=$PLPackage/Perl-5.26/lib/CORE;$PLPackage/Tcl-8.6/lib:$LD_LIBRARY_PATH
-			export PERL5LIB=$PLPackage/Perl-5.26/lib;
+			export PATH=$PLPackage/Perl-5.30/bin;$PLPackage/Tcl-8.6/bin:$PATH
+			export LD_LIBRARY_PATH=$PLPackage/Perl-5.30/lib/CORE;$PLPackage/Tcl-8.6/lib:$LD_LIBRARY_PATH
+			export PERL5LIB=$PLPackage/Perl-5.30/lib;
 
 			"$PGHome"/bin/postgres -D "$PGHome"/data -p "$PGPort"
 

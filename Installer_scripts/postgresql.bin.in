@@ -15,12 +15,12 @@ PGServerController() {
 
 			if [ -f "/etc/redhat-release" ] || [ -f "/etc/SuSe-release" ]; then
 
-				serverStatus=`export PATH=$PLPackage/Perl-5.26/bin:$PATH; export LD_LIBRARY_PATH=$PLPackage/Perl-5.26/lib/CORE:$LD_LIBRARY_PATH; export PERL5LIB=$PLPackage/Perl-5.26/lib; export PATH=$PLPackage/Tcl-8.6/bin:$PATH; export LD_LIBRARY_PATH=$PLPackage/Tcl-8.6/lib:$LD_LIBRARY_PATH; $PGHome/bin/pg_ctl -D $PGHome/data -o " -p $PGPort" -l /tmp/logfile -w $1`
+				serverStatus=`export PATH=$PLPackage/Perl-5.30/bin:$PATH; export LD_LIBRARY_PATH=$PLPackage/Perl-5.30/lib/CORE:$LD_LIBRARY_PATH; export PERL5LIB=$PLPackage/Perl-5.30/lib; export PATH=$PLPackage/Tcl-8.6/bin:$PATH; export LD_LIBRARY_PATH=$PLPackage/Tcl-8.6/lib:$LD_LIBRARY_PATH; $PGHome/bin/pg_ctl -D $PGHome/data -o " -p $PGPort" -l /tmp/logfile -w $1`
 
 				return
 
 			else
-				serverStatus=`sudo su postgres -c 'export PATH='"$PLPackage"'/Perl-5.26/bin:$PATH; export LD_LIBRARY_PATH='"$PLPackage"'/Perl-5.26/lib/CORE:$LD_LIBRARY_PATH; export PERL5LIB=/'"$PLPackage"'/Perl-5.26/lib; export PATH='"$PLPackage"'/Tcl-8.6/bin:$PATH;export LD_LIBRARY_PATH='"$PLPackage"'/Tcl-8.6/lib:$LD_LIBRARY_PATH; '"$PGHome"'/bin/pg_ctl -D '"$PGHome"'/data -o " -p '"$PGPort"'" -l /tmp/logfile -w '"$1"''`
+				serverStatus=`sudo su postgres -c 'export PATH='"$PLPackage"'/Perl-5.30/bin:$PATH; export LD_LIBRARY_PATH='"$PLPackage"'/Perl-5.30/lib/CORE:$LD_LIBRARY_PATH; export PERL5LIB=/'"$PLPackage"'/Perl-5.30/lib; export PATH='"$PLPackage"'/Tcl-8.6/bin:$PATH;export LD_LIBRARY_PATH='"$PLPackage"'/Tcl-8.6/lib:$LD_LIBRARY_PATH; '"$PGHome"'/bin/pg_ctl -D '"$PGHome"'/data -o " -p '"$PGPort"'" -l /tmp/logfile -w '"$1"''`
 
 				return
 
