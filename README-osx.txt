@@ -56,6 +56,8 @@ Connect to PostgreSQL via OmniDB
 
 OmniDB is an interactive and powerful, yet lightweight, browser-based database management tool. OmniDB allows users to manage multiple databases in a unified workspace with a user-friendly and fast-performing interface.  Despite its light design, OmniDB is a reliable and comprehensive web tool with many facilitating characteristics to easily add, edit and manage multiple databases
 
+NOTE: OmniDB being shipped as part of PostgreSQL-13 installers is not yet fully compatible with PostgreSQL-13 and therefore not all features in OmniDB are guaranteed to work. Work on PostgreSQL-13 compatibility is underway and will be made available in the upcoming releases of Postgres Installer.
+
 Usage instructions
 ==================
 
