@@ -2365,15 +2365,12 @@ ${msg(existing.upgraded)} </explanation>
             <name>project.allowAddRemoveComponents</name>
             <value>1</value>
         </setInstallerVariable>
-    </postInstallationActionList>
 
-    <preUninstallationActionList>
-        <addFilesToUninstaller>
+	<addFilesToUninstaller>
             <files>${installdir}${slash}${product_version}${slash}bin${slash}PGSvc.sh</files>
         </addFilesToUninstaller>
-    </preUninstallationActionList>
 
-
+    </postInstallationActionList>
     <allowComponentSelection>1</allowComponentSelection>
     <allowedLanguages>en fr de it es</allowedLanguages>
     <createOsxBundleZip>1</createOsxBundleZip>
